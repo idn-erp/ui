@@ -1,0 +1,7 @@
+{
+  "name": "idn-pm-ui",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
