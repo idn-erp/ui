@@ -1,20 +1,24 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header>
+  <ion-toolbar color="primary">
     <ion-title>
-      Blank
+      IDN
     </ion-title>
+    <ion-button color="light" slot="end" class="ion-margin-end" routerLink="/login">
+      LOGIN
+      <ion-icon name="log-in" slot="end"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="8" class="ion-text-justify">
+        <h1>
+          Project Management
+        </h1>
+        <p>Introducing our cutting-edge project management software: Streamline Your Workflow, Simplify Your Projects. Our software is designed to help you manage projects with ease, from start to finish. With intuitive features like task tracking, team collaboration, and real-time progress updates, you'll never miss a beat. Stay organized, boost productivity, and deliver projects on time, every time. Try our project management software today and experience a new level of efficiency.</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
