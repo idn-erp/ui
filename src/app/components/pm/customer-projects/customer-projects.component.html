@@ -1,0 +1,64 @@
+<ion-toolbar color="light">
+  <ion-title>{{ln.projects || 'Projects'}}</ion-title>
+  <ion-button class="ion-margin-end" fill="clear" slot="end" (click)="add_init()">
+    Create
+  </ion-button>
+</ion-toolbar>
+<ion-item *ngIf="proj.length==0" lines="none">
+  <ion-icon name="alert-outline"></ion-icon>
+  <ion-label class="ion-margin-start">
+    {{ln.no_projects || "No Projects"}}
+  </ion-label>
+</ion-item>
+<ion-item *ngFor="let p of proj">
+  <ion-label>
+    <h3>{{ln.name || "Name"}} : {{p.name}}</h3>
+    <p>{{ln.status || "Status"}} : {{p.status}}</p>
+  </ion-label>
+</ion-item>
+
+<ion-modal [isOpen]='is_add_open' (didDismiss)='is_add_open=false'>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>{{ln.create_project || "Create Project"}}</ion-title>
+        <ion-buttons slot='end' (click)='is_add_open=false'>
+          <ion-button><ion-icon name='close' slot='icon-only'></ion-icon></ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-item>
+        <ion-icon slot="start" name="barcode-outline"></ion-icon>
+        <ion-input [label]="ln.project_code || 'Project Code'" [(ngModel)]="new_project.code" labelPlacement="floating"></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+        <ion-input [label]="ln.project_name || 'Project Name'" [(ngModel)]="new_project.name" labelPlacement="floating"></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label>
+          {{ln.type || 'Type'}} : 
+          <ion-chip (click)="new_project.type='supervision'">
+            <ion-icon name="checkmark-done" *ngIf="new_project.type=='supervision'"></ion-icon>
+            <ion-label>{{ln.supervision || 'Supervision'}}</ion-label>
+          </ion-chip>
+          <ion-chip (click)="new_project.type='design'">
+            <ion-icon name="checkmark-done" *ngIf="new_project.type=='design'"></ion-icon>
+            <ion-label>{{ln.design || 'Design'}}</ion-label>
+          </ion-chip>
+        </ion-label>
+      </ion-item>
+    </ion-content>
+    <ion-footer>
+      <ion-toolbar>
+        <ion-button slot="end" class="ion-margin-end" (click)="add_process()">
+          {{ln.create || "Create"}}
+          <ion-icon name="send-outline" slot="end"></ion-icon>
+        </ion-button>
+      </ion-toolbar>
+    </ion-footer>
+  </ng-template>
+</ion-modal>

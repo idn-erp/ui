@@ -1,0 +1,27 @@
+<ion-split-pane contentId="main">
+  <ion-menu contentId="main">
+    <ion-header>
+      <ion-toolbar color="dark">
+        <ion-title>Project Management</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content color="dark">
+      <ion-item color="dark" routerLink="/pm/my-dashboard">
+        <ion-icon name="grid-outline"></ion-icon>
+        <ion-label class="ion-margin-start">
+          {{ln.my_dashboard || 'My Dashboard'}}
+        </ion-label>
+      </ion-item>
+      <ion-item color="dark" [routerLink]="m.path" *ngFor="let m of menus">
+        <ion-icon name="grid-outline"></ion-icon>
+        <ion-label class="ion-margin-start">
+          {{ln[m.key || '_'] || m.name}}
+        </ion-label>
+      </ion-item>
+    </ion-content>
+  </ion-menu>
+
+  <div class="ion-page" id="main">
+    <ion-router-outlet></ion-router-outlet>
+  </div>
+</ion-split-pane>

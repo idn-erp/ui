@@ -24,3 +24,19 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+.split-pane-visible >.split-pane-side { flex-grow: 28; }
+.split-pane-visible >.split-pane-main { flex-grow: 72; }
+.split-pane-visible >.split-pane-side {
+    min-width: 200px; /* Default: 270px */
+    max-width: 304px; /* Same as when menu opens in mobile mode */
+}
+
+/** Custom CSS */
+input,select{width:100%;outline:none !important;padding:5px;background-color:transparent;border:solid 1px gray}
+input:focus,select:focus{border:solid 1px aqua;}
+.dn-full{width: 100%;}
+.dn-fs-small{font-size: small;}
+.dn-fs-xxsmall{font-size: xx-small;}
+.dn-fs-xsmall{font-size: x-small;}
+.dn-fs-smaller{font-size: smaller;}

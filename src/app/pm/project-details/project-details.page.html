@@ -1,0 +1,12 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" class="ion-margin-start">
+      <ion-back-button defaultHref="/pm/projects"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ln.project_details || 'Project Details'}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <app-project-basic></app-project-basic>
+</ion-content>

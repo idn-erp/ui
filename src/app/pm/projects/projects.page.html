@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" class="ion-margin-start">
+      <ion-back-button defaultHref="/pm/my-dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ln.projects || "Projects"}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" size-sm="3">
+        <ion-label class="dn-fs-small">{{ln.code || 'Code'}}</ion-label>
+        <input type="text" [(ngModel)]="filter.code" placeholder="...">
+      </ion-col>
+      <ion-col size="6" size-sm="3">
+        <ion-label class="dn-fs-small">{{ln.name || 'Name'}}</ion-label>
+        <input type="text" [(ngModel)]="filter.name" placeholder="...">
+      </ion-col>
+      <ion-col size="6" size-sm="3">
+        <ion-label class="dn-fs-small">{{ln.type || 'Type'}}</ion-label>
+        <select type="text" [(ngModel)]="filter.type">
+          <option value="all">{{ln.all || 'All'}}</option>
+          <option value="supervision">{{ln.supervision || 'Supervision'}}</option>
+          <option value="design">{{ln.design || 'Design'}}</option>
+        </select>
+      </ion-col>
+      <ion-col size="6" size-sm="3">
+        <ion-label class="dn-fs-small">{{ln.status || 'Status'}}</ion-label>
+        <select type="text" [(ngModel)]="filter.status">
+          <option value="all">{{ln.all || 'All'}}</option>
+          <option value="supervision">{{ln.waiting || 'Waiting'}}</option>
+          <option value="progress">{{ln.progress || 'Progress'}}</option>
+          <option value="done">{{ln.done || 'Done'}}</option>
+        </select>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" size-sm="3">
+        <ion-button (click)="search()">
+          {{ln.search || 'Search'}}
+          <ion-icon slot="end" name="search-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-sm="6" size-md="4" *ngFor="let p of all">
+        <ion-item routerLink="/pm/project-details" [queryParams]="{project_id: p.id}">
+          <ion-label>
+            <h2>{{ln.name || 'Name'}}: {{p.name}}</h2>
+            <p>status: {{p.status}}</p>
+            <p>type: {{p.type}}</p>
+          </ion-label>
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
