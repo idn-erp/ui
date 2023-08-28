@@ -10,7 +10,7 @@
     {{ln.no_projects || "No Projects"}}
   </ion-label>
 </ion-item>
-<ion-item *ngFor="let p of proj">
+<ion-item *ngFor="let p of proj" routerLink="/pm/project-details" [queryParams]="{project_id: p.id}">
   <ion-label>
     <h3>{{ln.name || "Name"}} : {{p.name}}</h3>
     <p>{{ln.status || "Status"}} : {{p.status}}</p>

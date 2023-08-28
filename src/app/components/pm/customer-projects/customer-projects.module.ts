@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CustomerProjectsComponent } from './customer-projects.component';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule
+    IonicModule,
+    RouterModule
   ],
   exports : [
     CustomerProjectsComponent

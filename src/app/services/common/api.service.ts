@@ -33,7 +33,10 @@ export class ApiService {
     this.init_ln(this.user.language || 'en');
   }
 
-  ln : any = {};
+  ln: any = {
+    dir : "ltr",
+    data : {}
+  };
   init_ln(ln_code: string){
     this.http.get('/assets/languages/'+ln_code+'.json').subscribe(
       (res:any)=>{
