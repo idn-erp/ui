@@ -37,6 +37,6 @@ input,select{width:100%;outline:none !important;padding:5px;background-color:tra
 input:focus,select:focus{border:solid 1px aqua;}
 .dn-full{width: 100%;}
 .dn-fs-small{font-size: small;}
-.dn-fs-xxsmall{font-size: xx-small;}
-.dn-fs-xsmall{font-size: x-small;}
+.dn-fs-xxsmall{font-size: xx-small !important;}
+.dn-fs-xsmall{font-size: x-small !important;}
 .dn-fs-smaller{font-size: smaller;}

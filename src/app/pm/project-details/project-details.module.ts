@@ -8,6 +8,7 @@ import { ProjectDetailsPageRoutingModule } from './project-details-routing.modul
 
 import { ProjectDetailsPage } from './project-details.page';
 import { ProjectBasicModule } from 'src/app/components/pm/project-basic/project-basic.module';
+import { ProjectTaskModule } from 'src/app/components/pm/project-task/project-task.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ProjectBasicModule } from 'src/app/components/pm/project-basic/project-
     FormsModule,
     IonicModule,
     ProjectDetailsPageRoutingModule,
-    ProjectBasicModule
+    ProjectBasicModule,
+    ProjectTaskModule
   ],
   declarations: [ProjectDetailsPage]
 })

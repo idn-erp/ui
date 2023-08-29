@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/common/api.service';
-import { ProjectService } from 'src/app/services/project.service';
+import { ProjectService } from 'src/app/services/pm/project.service';
 import { project } from 'src/app/types/interfaces';
 
 @Component({

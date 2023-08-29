@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/common/api.service';
-import { CustomerService } from 'src/app/services/customer.service';
-import { ProjectService } from 'src/app/services/project.service';
+import { CustomerService } from 'src/app/services/pm/customer.service';
+import { ProjectService } from 'src/app/services/pm/project.service';
 import { project } from 'src/app/types/interfaces';
 
 @Component({

@@ -8,5 +8,14 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <app-project-basic></app-project-basic>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="4" size-md="3">
+        <app-project-basic></app-project-basic>
+      </ion-col>
+      <ion-col size="12" size-sm="8" size-md="9">
+        <app-project-task></app-project-task>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
