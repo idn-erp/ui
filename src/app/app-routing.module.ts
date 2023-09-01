@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { IsLoggedInGuardGuard } from './guards/is-logged-in-guard.guard';
-import { IsLoggedOutGuardGuard } from './guards/is-logged-out-guard.guard';
+import { IsLoggedOutGuard } from './guards/is-logged-out.guard';
+import { IsLoggedInGuard } from './guards/is-logged-in.guard';
 
 const routes: Routes = [
   {
@@ -16,12 +16,12 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule),
-    canActivate : [IsLoggedOutGuardGuard]
+    canActivate : [IsLoggedOutGuard]
   },
   {
     path: 'pm',
     loadChildren: () => import('./pm/pm.module').then( m => m.PmPageModule),
-    canActivate : [IsLoggedInGuardGuard]
+    canActivate : [IsLoggedInGuard]
   },
 ];
 

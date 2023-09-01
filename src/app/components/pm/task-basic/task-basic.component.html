@@ -1,0 +1,41 @@
+<ion-list>
+  <ion-list-header color="light">
+    <ion-label>Task Info</ion-label>
+    <ion-button size="small">edit</ion-button>
+  </ion-list-header>
+  <ion-item lines="none">
+    <ion-icon name="information-circle-outline"></ion-icon>
+    <ion-label class="ion-margin-start">
+      <p>{{ln.name || "Name"}}</p>
+      <h2>{{task.name}}</h2>
+    </ion-label>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-icon name="stats-chart-outline"></ion-icon>
+    <ion-label class="ion-margin-start">
+      <p>{{ln.status || "Status"}}</p>
+      <h2>{{task.status}}</h2>
+    </ion-label>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-icon name="calendar-outline"></ion-icon>
+    <ion-label class="ion-margin-start">
+      <p>{{ln.deadline || "Deadline"}}</p>
+      <h2>{{task.deadline}}</h2>
+    </ion-label>
+  </ion-item>
+  <ion-item *ngIf="task.status!='waiting'" lines="none">
+    <ion-icon name="time-outline"></ion-icon>
+    <ion-label class="ion-margin-start">
+      <p>{{ln.start_time || "Start Time"}}</p>
+      <h2>{{task.start_time}}</h2>
+    </ion-label>
+  </ion-item>
+  <ion-item *ngIf="task.status!='waiting'" lines="none">
+    <ion-icon name="time-outline"></ion-icon>
+    <ion-label class="ion-margin-start">
+      <p>{{ln.duration || "Duration"}}</p>
+      <h2>{{task.duration}}</h2>
+    </ion-label>
+  </ion-item>
+</ion-list>

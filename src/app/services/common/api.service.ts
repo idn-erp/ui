@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,8 @@ export class ApiService {
     private http: HttpClient,
     private rtr: Router,
     private tst: ToastController,
-    private ldr: LoadingController
+    private ldr: LoadingController,
+    private alt: AlertController
   ) { }
 
   env: any = environment;
@@ -96,6 +97,7 @@ export class ApiService {
   logout(){
     localStorage.removeItem("user");
     localStorage.removeItem("token");
+    this.isLoggedIn = false;
     this.rtr.navigate(['/login']);
   }
 
@@ -115,6 +117,28 @@ export class ApiService {
   }
   hideLoader(){
     this.ldr.dismiss();
+  }
+
+  async confirm(
+    title: string=(this.ln.confirm || "Confirm"), 
+    msg: string=(this.ln.are_you_sure || "Are you sure?"),
+    yes: string = (this.ln.yes || "Yes"),
+    no: string = (this.ln.no || "No")
+  ){
+    const alert = await this.alt.create({
+      header: title,
+      message : msg,
+      buttons : [{
+        text : yes,
+        role: 'confirm'
+      },{
+        text : no,
+        role: 'cancel'
+      }]
+    })
+    alert.present();
+    const {role} = await alert.onDidDismiss();
+    return role=='confirm';
   }
 
 }

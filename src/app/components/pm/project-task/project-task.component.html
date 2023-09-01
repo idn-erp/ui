@@ -14,19 +14,48 @@
       <h2>{{ln.no_tasks || 'No tasks found'}}</h2>
     </ion-label>
   </ion-item>
-  <ion-item *ngFor="let t of tasks">
-    <ion-icon name="time-outline" *ngIf="t.type=='task'"></ion-icon>
-    <ion-label class="ion-margin-start" *ngIf="t.type=='group'">
-      <p>{{t.name}}</p>
-    </ion-label>
-    <ion-label class="ion-margin-start" *ngIf="t.type=='task'">
-      <h4>{{ln.name || "Name"}}: {{t.name}}</h4>
-      <p class="dn-fs-xsmall">
-        {{ln.status || 'Status'}}: {{t.status}} &nbsp;
-        {{ln.deadline || 'Deadline'}}: {{t.deadline}} &nbsp;
-      </p>
-    </ion-label>
-  </ion-item>
+  <div *ngFor="let t of tasks;index as idx">
+    <ion-item *ngIf="t.type=='task'">
+      <ion-icon name="time-outline"></ion-icon>
+      <ion-label class="ion-margin-start">
+        <app-task-item [tsk]="t"></app-task-item>
+      </ion-label>
+    </ion-item>
+    <div *ngIf="t.type=='group'">
+      <ion-toolbar>
+        <ion-badge slot="start" class="ion-margin-start" color="light">{{idx+1}}</ion-badge>
+        <ion-title color="success" class="dn-fs-small">{{t.name}}</ion-title>
+        <ion-buttons slot="end">
+          <ion-button color="danger" (click)="remove(t)">
+            <ion-icon name="trash-outline" class="dn-fs-small"></ion-icon>
+          </ion-button>
+          <ion-button color="secondary" (click)="edit_init(t)">
+            <ion-icon name="create-outline" class="dn-fs-small"></ion-icon>
+          </ion-button>
+          <ion-button (click)="add_init(t)" class="dn-fs-small">
+            Add
+            <ion-icon class="dn-fs-small" name="add-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+      <ion-item class="ion-margin-start" *ngFor="let st of t.kids;index as idx2">
+        <ion-badge color="light" class="ion-margin-end">{{idx+1}}.{{idx2+1}}</ion-badge>
+        <ion-label><app-task-item [tsk]="st"></app-task-item></ion-label>
+        <ion-chip color="secondary" routerLink="/pm/task-details" queryParamsHandling="merge" [queryParams]="{task_id:st.id}" class="dn-fs-small">
+          <ion-label>{{ln.open || "open"}}</ion-label>
+          <ion-icon class="dn-fs-small" name="open-outline"></ion-icon>
+        </ion-chip>
+        <ion-buttons>
+          <ion-button color="danger" (click)="remove(st)">
+            <ion-icon name="trash-outline" class="dn-fs-small"></ion-icon>
+          </ion-button>
+          <ion-button color="secondary" (click)="edit_init(st)">
+            <ion-icon name="create-outline" class="dn-fs-small"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </div>
+  </div>
 </ion-list>
 
 <ion-modal [isOpen]="is_add_open" (didDismiss)="is_add_open=false">
@@ -43,23 +72,44 @@
     </ion-header>
     <ion-content class="ion-padding">
       <ion-list-header>{{ln.parent || 'Parent'}}: {{parent.id ? parent.name : "Root"}}</ion-list-header>
-      <ion-item fill="solid">
-        <ion-input [(ngModel)]="new_task.name" [label]="ln.name || 'Name'" labelPlacement="floating" ></ion-input>
-      </ion-item>
-      <ion-item fill="solid">
-        <ion-select [(ngModel)]="new_task.type" [label]="ln.type || 'Type'" labelPlacement="floating" >
-          <ion-select-option value="task">{{ln.task || 'Task'}}</ion-select-option>
-          <ion-select-option value="group">{{ln.group || 'Group'}}</ion-select-option>
-        </ion-select>
-      </ion-item>
-      <ion-item fill="solid">
-        <ion-input [(ngModel)]="new_task.deadline" type="date" [label]="ln.deadline || 'Deadline'" labelPlacement="floating" ></ion-input>
-      </ion-item>
+      <ion-input fill="solid" [(ngModel)]="new_task.name" [label]="ln.name || 'Name'" labelPlacement="floating" ></ion-input>
+      <ion-select fill="solid" [(ngModel)]="new_task.type" [label]="ln.type || 'Type'" labelPlacement="floating" >
+        <ion-select-option value="task">{{ln.task || 'Task'}}</ion-select-option>
+        <ion-select-option *ngIf="parent.type!='group'" value="group">{{ln.group || 'Group'}}</ion-select-option>
+      </ion-select>
+      <ion-input *ngIf="new_task.type=='task'" fill="solid" [(ngModel)]="new_task.deadline" type="date" [label]="ln.deadline || 'Deadline'" labelPlacement="floating" ></ion-input>
     </ion-content>
     <ion-footer>
       <ion-toolbar>
         <ion-button slot="end" class="ion-margin-end" (click)="add_process()">
           {{ln.add || "Add"}}
+          <ion-icon name="send" slot="end"></ion-icon>
+        </ion-button>
+      </ion-toolbar>
+    </ion-footer>
+  </ng-template>
+</ion-modal>
+
+<ion-modal [isOpen]="is_edit_open" (didDismiss)="is_edit_open=false">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>{{ln.edit_task || "Edit Task"}}</ion-title>
+        <ion-buttons slot="end" class="ion-margin-end">
+          <ion-button (click)="is_edit_open=false">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-input fill="solid" [(ngModel)]="edit_task.name" [label]="ln.name || 'Name'" labelPlacement="floating" ></ion-input>
+      <ion-input *ngIf="edit_task.type=='task'" fill="solid" [(ngModel)]="edit_task.deadline" type="date" [label]="ln.deadline || 'Deadline'" labelPlacement="floating" ></ion-input>
+    </ion-content>
+    <ion-footer>
+      <ion-toolbar>
+        <ion-button slot="end" class="ion-margin-end" (click)="edit_process()">
+          {{ln.update || "Update"}}
           <ion-icon name="send" slot="end"></ion-icon>
         </ion-button>
       </ion-toolbar>

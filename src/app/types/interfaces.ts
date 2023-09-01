@@ -54,4 +54,5 @@ export interface task{
     is_active?: boolean
 
     kids?: task[]
+    assignee_count?: number
 }

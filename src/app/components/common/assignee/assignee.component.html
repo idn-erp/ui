@@ -1,0 +1,27 @@
+<ion-list>
+  <ion-list-header color="light">
+    <ion-label>{{ln.assignees || "Assignees"}}</ion-label>
+    <ion-button fill="clear" color="secondary" (click)="add_init()">
+      {{ln.add || 'Add'}}
+    </ion-button>
+  </ion-list-header>
+  <ion-item lines="none">
+    <ion-icon name="person-circle-outline"></ion-icon>
+    <ion-label class="ion-margin-start">
+      <h4>Danish Nayeem</h4>
+    </ion-label>
+    <ion-button color="danger" fill="clear">
+      <ion-icon name="trash"></ion-icon>
+    </ion-button>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-icon name="person-circle-outline"></ion-icon>
+    <ion-label class="ion-margin-start">
+      <h4>Azhar Khan Imam</h4>
+    </ion-label>
+    <ion-button color="danger" fill="clear">
+      <ion-icon name="trash"></ion-icon>
+    </ion-button> 
+  </ion-item>
+</ion-list>
+

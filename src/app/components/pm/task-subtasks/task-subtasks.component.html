@@ -1,0 +1,44 @@
+<ion-list>
+  <ion-list-header color="light">
+    <ion-label>{{ln.sub_tasks || 'Sub Tasks'}}</ion-label>
+    <ion-button fill="clear" class="ion-margin-end" (click)="add_init()">
+      {{ln.add || 'Add'}}
+    </ion-button>
+  </ion-list-header>
+  <ion-item lines="none" *ngIf="!busy && subtasks.length==0">
+    <ion-icon color="success" name="alert-circle-outline" size="large"></ion-icon>
+    <ion-label color="success" class="ion-margin-start">
+      <h4>No subtasks / checklist found</h4>
+    </ion-label>
+  </ion-item>
+  <ion-item *ngFor="let s of subtasks;index as idx">
+    <ion-badge color="light">{{idx+1}}</ion-badge>
+    <ion-label class="ion-margin-start">
+      <h4>{{s.name}}</h4>
+    </ion-label>
+  </ion-item>
+</ion-list>
+
+<ion-modal [isOpen]='is_add_open' (didDismiss)='is_add_open=false'>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>{{ln.create_subtask || "Create Subtask"}}</ion-title>
+        <ion-buttons slot='end' (click)='is_add_open=false'>
+          <ion-button><ion-icon name='close' slot='icon-only'></ion-icon></ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-input fill="solid" [(ngModel)]="new_task.name" label="Name" labelPlacement="floating"></ion-input>
+    </ion-content>
+    <ion-footer>
+      <ion-toolbar>
+        <ion-button slot="end" class="ion-margin-end" (click)="add_process()">
+          {{ln.create || 'Create'}}
+          <ion-icon slot="end" name="send"></ion-icon>
+        </ion-button>
+      </ion-toolbar>
+    </ion-footer>
+  </ng-template>
+</ion-modal>

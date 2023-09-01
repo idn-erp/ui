@@ -1,26 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProjectTaskComponent } from './project-task.component';
+import { AssigneeComponent } from './assignee.component';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { TaskItemModule } from '../task-item/task-item.module';
-import { RouterModule } from '@angular/router';
+import { UserSelectorModule } from '../user-selector/user-selector.module';
 
 
 
 @NgModule({
   declarations: [
-    ProjectTaskComponent
+    AssigneeComponent
   ],
   imports: [
     CommonModule,
     IonicModule,
     FormsModule,
-    TaskItemModule,
-    RouterModule
+    UserSelectorModule
   ],
   exports : [
-    ProjectTaskComponent
+    AssigneeComponent
   ]
 })
-export class ProjectTaskModule { }
+export class AssigneeModule { }

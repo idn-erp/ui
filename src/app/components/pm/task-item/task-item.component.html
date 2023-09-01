@@ -1,0 +1,13 @@
+<h4>{{tsk.name}}</h4>
+<ion-badge class="dn-fs-xsmall" color="light">
+  <ion-icon name="stats-chart"></ion-icon>
+  {{tsk.status}}
+</ion-badge>&nbsp;
+<ion-badge class="dn-fs-xsmall" color="light">
+  <ion-icon name="calendar"></ion-icon>
+  {{tsk.deadline || '--'}}
+</ion-badge>&nbsp;
+<ion-badge class="dn-fs-xsmall" color="light">
+  <ion-icon name="people"></ion-icon>
+  {{tsk.assignee_count}}
+</ion-badge>
