@@ -98,6 +98,7 @@ export class ApiService {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     this.isLoggedIn = false;
+    location.reload();
     this.rtr.navigate(['/login']);
   }
 

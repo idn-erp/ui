@@ -56,3 +56,44 @@ export interface task{
     kids?: task[]
     assignee_count?: number
 }
+
+export interface user{
+    id?: number | string
+    code?: string
+    name?: string
+    email?: string
+    password?: string
+    language?: string
+    is_active?: boolean
+
+    department_id?: string | number
+    designation_id?: string | number
+    group_id?: string | number
+}
+
+export interface group{
+    id?: string
+    code: string
+    name?: string
+    created_by?: number
+    created_date?: string
+    is_active?: boolean
+}
+
+export interface designation{
+    id?: string
+    code: string
+    name?: string
+    created_by?: number
+    created_date?: string
+    is_active?: boolean
+}
+
+export interface department{
+    id?: string
+    code: string
+    name?: string
+    created_by?: number
+    created_date?: string
+    is_active?: boolean
+}

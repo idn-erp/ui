@@ -21,7 +21,7 @@
     <ion-icon name="calendar-outline"></ion-icon>
     <ion-label class="ion-margin-start">
       <p>{{ln.deadline || "Deadline"}}</p>
-      <h2>{{task.deadline}}</h2>
+      <h2>{{task.deadline || '--'}}</h2>
     </ion-label>
   </ion-item>
   <ion-item *ngIf="task.status!='waiting'" lines="none">
