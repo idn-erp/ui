@@ -1,0 +1,46 @@
+  <!-- The header of the component -->
+  <ion-toolbar>
+    <!-- The toolbar of the header -->
+    <ion-title>Attachment Component</ion-title> <!-- The title of the component -->
+  </ion-toolbar>
+
+  <ion-item lines="none">
+    <ion-label>
+      <input 
+        type="file"
+        id="file-input" 
+        multiple 
+        (change)="onFileChange($event)"
+      >
+    </ion-label>
+    <ion-chip color="primary" (click)="saveAttachments()">
+      <ion-label>{{ln.save || 'SAVE'}}</ion-label>
+      <ion-icon name="save-outline"></ion-icon>
+    </ion-chip>
+  </ion-item>
+
+  <div *ngIf="uploadStatus">
+    <!-- A div element for displaying upload status, use ngIf directive to show it only if uploadStatus is truthy -->
+    <p>{{ uploadStatus }}</p> <!-- Display the uploadStatus property -->
+    <progress [value]="uploadProgress" max="100"></progress>
+    <!-- A progress element for displaying upload progress, bind the value attribute to the uploadProgress property and set max as 100 -->
+  </div>
+
+  
+  <!-- The content of the component -->
+  <ion-list>
+    <!-- The list of attachments -->
+    <ion-item *ngFor="let attachment of attachments; let i = index">
+      <!-- Loop through each attachment in the array and display it as an item with an index -->
+      <ion-thumbnail slot="start">
+        <!-- The thumbnail of the attachment -->
+        <img [src]="attachment.preview" /> <!-- Bind the src attribute to the preview property of the attachment object -->
+      </ion-thumbnail>
+      <ion-label>
+        <input type="text" placeholder="Enter name" [(ngModel)]="attachment.name" />
+        <br>
+        <input type="text" placeholder="Enter info" [(ngModel)]="attachment.info" />
+      </ion-label>
+      <ion-icon name="close-circle" slot="end" (click)="removeAttachment(i)" ></ion-icon>
+    </ion-item>
+  </ion-list>

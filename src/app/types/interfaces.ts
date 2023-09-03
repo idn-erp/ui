@@ -57,6 +57,18 @@ export interface task{
     assignee_count?: number
 }
 
+export interface assignee{
+    id?: string | number
+	object_type?: string
+	object_id?: string | number
+	user_id?: string | number
+	assigned_date?: string
+	assigned_by?: number
+	is_active?: boolean
+
+    user?: user
+}
+
 export interface user{
     id?: number | string
     code?: string
@@ -96,4 +108,22 @@ export interface department{
     created_by?: number
     created_date?: string
     is_active?: boolean
+}
+
+export interface attachment {
+    id?: number
+    object_type?: string
+    object_id?: number
+    name?: string
+    info?: string
+    file_name?: string
+    file_loc?: string
+    file_size?: string
+    file_type?: string
+    created_at?: string
+    created_by?: number
+    is_active?: number
+
+    file?: File
+    preview?: string | ArrayBuffer | any
 }

@@ -4,7 +4,7 @@
             {{ln.select_user || "Select User"}}
         </ion-title>
         <ion-buttons slot="end" class="ion-margin-end">
-            <ion-button (click)="proceed()">
+            <ion-button (click)="close()">
                 <ion-icon name="close" slot="icon-only"></ion-icon>
             </ion-button>
         </ion-buttons>
@@ -59,3 +59,10 @@
         </ion-row>
     </ion-grid>
 </ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <ion-button slot="end" class="ion-margin-end" (click)="proceed()">
+            {{ln.proceed || 'PROCEED'}}
+        </ion-button>
+    </ion-toolbar>
+</ion-footer>

@@ -22,7 +22,8 @@ export class UserService {
 
   async selector(){
     const modal = await this.mdc.create({
-      component : UserSelectorComponent
+      component : UserSelectorComponent,
+      backdropDismiss: false
     });
     modal.present();
     const {data,role} = await modal.onDidDismiss();

@@ -11,6 +11,7 @@ import { TaskBasicModule } from 'src/app/components/pm/task-basic/task-basic.mod
 import { TaskSubtasksModule } from 'src/app/components/pm/task-subtasks/task-subtasks.module';
 import { AssigneeModule } from 'src/app/components/common/assignee/assignee.module';
 import { XlsReaderModule } from 'src/app/components/hr/xls-reader/xls-reader.module';
+import { AttachmentModule } from 'src/app/components/common/attachment/attachment.module';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { XlsReaderModule } from 'src/app/components/hr/xls-reader/xls-reader.mod
     TaskDetailsPageRoutingModule,
     TaskBasicModule,
     TaskSubtasksModule,
-    AssigneeModule
+    AssigneeModule,
+    AttachmentModule
   ],
   declarations: [TaskDetailsPage]
 })

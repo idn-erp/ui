@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
+import { assignee } from 'src/app/types/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -20,17 +21,17 @@ export class AssigneeService {
 
   async add(
     object_type: string,
-    object_id: string
+    object_id: string,
+    user_id: string
   ){
-    const res: any = await this.api.sp('assignee/add', [object_type, object_id]);
+    const res: any = await this.api.sp('assignee/add', [object_type, object_id, user_id]);
     return res;
   }
 
   async remove(
-    object_type: string,
-    object_id: string
+    a: assignee
   ){
-    const res: any = await this.api.sp('assignee/remove', [object_type, object_id]);
+    const res: any = await this.api.sp('assignee/remove', [a.id, a.object_type, a.object_id]);
     return res;
   }
 

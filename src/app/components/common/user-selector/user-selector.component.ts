@@ -48,5 +48,8 @@ export class UserSelectorComponent  implements OnInit {
   proceed(){
     this.mdc.dismiss(this.selected)
   }
+  close(){
+    this.mdc.dismiss()
+  }
 
 }

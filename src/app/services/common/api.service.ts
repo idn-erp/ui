@@ -79,6 +79,13 @@ export class ApiService {
     );
   }
 
+  save(
+    p: string,
+    fd: FormData
+  ){
+
+  }
+
   authenticate( email: String, password: String ){
     return new Promise(
       Res=>{
@@ -130,11 +137,11 @@ export class ApiService {
       header: title,
       message : msg,
       buttons : [{
-        text : yes,
-        role: 'confirm'
-      },{
         text : no,
         role: 'cancel'
+      },{
+        text : yes,
+        role: 'confirm'
       }]
     })
     alert.present();
