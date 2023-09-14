@@ -9,6 +9,7 @@ import { CustomerDetailsPageRoutingModule } from './customer-details-routing.mod
 import { CustomerDetailsPage } from './customer-details.page';
 import { CustomerBasicModule } from 'src/app/components/pm/customer-basic/customer-basic.module';
 import { CustomerProjectsModule } from 'src/app/components/pm/customer-projects/customer-projects.module';
+import { ContactModule } from 'src/app/components/common/contact/contact.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { CustomerProjectsModule } from 'src/app/components/pm/customer-projects/
     IonicModule,
     CustomerDetailsPageRoutingModule,
     CustomerBasicModule,
-    CustomerProjectsModule
+    CustomerProjectsModule,
+    ContactModule
   ],
   declarations: [CustomerDetailsPage]
 })

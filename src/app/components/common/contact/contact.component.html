@@ -1,0 +1,130 @@
+<ion-item lines="none" color="light">
+  <ion-label>
+    {{ln.contacts||"Contacts"}}
+  </ion-label>
+  <ion-button size="small" fill="clear" (click)="act_init()">
+    Add
+  </ion-button>
+</ion-item>
+<ion-item *ngFor="let c of all">
+  <ion-label>
+    <h4>{{c.full_name}}</h4>
+    <div class="dn-fs-xsmall">
+      {{c.country?.name}}
+      <span *ngIf="c.state">, {{c.state}}</span>
+      <span *ngIf="c.city">, {{c.city}}</span>
+      <span *ngIf="c.street">, {{c.street}}</span>
+      <span *ngIf="c.address">, {{c.address}}</span>
+      <span *ngIf="c.postal_code">, {{c.postal_code}}</span>
+      <br>
+      <span *ngIf="c.phone">+{{c.country?.code}} {{c.phone}}</span><span *ngIf="c.email"> - {{c.email}}</span>
+    </div>
+  </ion-label>
+  <ion-badge color="light" (click)="act_init('edit', c)">
+    <ion-icon name="create-outline" class="dn-fs-xsmall"></ion-icon>
+  </ion-badge>&nbsp;
+  <ion-badge color="danger" (click)="remove(c)">
+    <ion-icon name="trash-outline" class="dn-fs-xsmall"></ion-icon>
+  </ion-badge>
+</ion-item>
+
+<ion-modal [isOpen]='is_act_open' (didDismiss)='is_act_open=false'>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>{{act_type=='add' ? (ln.add_contact || "Add Contact") : (ln.edit_contact || "Edit Contact")}}</ion-title>
+        <ion-buttons slot='end' (click)='is_act_open=false'>
+          <ion-button><ion-icon name='close' slot='icon-only'></ion-icon></ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" size-sm="6">
+            <span class="dn-fs-xsmall">{{ln.name || "Name"}}</span>
+            <input type="text" [(ngModel)]="act_contact.full_name">
+          </ion-col>
+          <ion-col size="12" size-sm="6">
+            <span class="dn-fs-xsmall">{{ln.country || "Country"}}</span>
+            <select [(ngModel)]="act_contact.country_id">
+              <option value="">{{ln.select_country || 'Select Country'}}</option>
+              <option [value]="c.id" *ngFor="let c of countries">{{ c.name }} (+{{c.code}})</option>
+            </select>
+          </ion-col>
+          <ion-col size="12">
+            {{ln.type || 'Type'}} : 
+            <ion-chip [color]="act_contact.type=='work' ? 'primary' : ''" (click)="act_contact.type='work'">
+              <ion-icon name="checkmark-circle-outline" *ngIf="act_contact.type=='work'"></ion-icon>
+              <ion-label>{{ln.work || 'Work'}}</ion-label>
+            </ion-chip>
+            <ion-chip [color]="act_contact.type=='home' ? 'primary' : ''" (click)="act_contact.type='home'">
+              <ion-icon name="checkmark-circle-outline" *ngIf="act_contact.type=='home'"></ion-icon>
+              <ion-label>{{ln.home || 'Home'}}</ion-label>
+            </ion-chip>
+            <ion-chip [color]="act_contact.type=='personal' ? 'primary' : ''" (click)="act_contact.type='personal'">
+              <ion-icon name="checkmark-circle-outline" *ngIf="act_contact.type=='personal'"></ion-icon>
+              <ion-label>{{ln.personal || 'Personal'}}</ion-label>
+            </ion-chip>
+            <ion-chip [color]="act_contact.type=='relative' ? 'primary' : ''" (click)="act_contact.type='relative'">
+              <ion-icon name="checkmark-circle-outline" *ngIf="act_contact.type=='relative'"></ion-icon>
+              <ion-label>{{ln.relative || 'Relative'}}</ion-label>
+            </ion-chip>
+            <ion-chip [color]="act_contact.type=='friend' ? 'primary' : ''" (click)="act_contact.type='friend'">
+              <ion-icon name="checkmark-circle-outline" *ngIf="act_contact.type=='friend'"></ion-icon>
+              <ion-label>{{ln.friend || 'Friend'}}</ion-label>
+            </ion-chip>
+            <ion-chip [color]="act_contact.type=='other' ? 'primary' : ''" (click)="act_contact.type='other'">
+              <ion-icon name="checkmark-circle-outline" *ngIf="act_contact.type=='other'"></ion-icon>
+              <ion-label>{{ln.other || 'Other'}}</ion-label>
+            </ion-chip>
+          </ion-col>
+          <ion-col class="ion-margin-top" size="12"><ion-label class="dn-fs-xsmall">{{ln.address || 'Address'}}</ion-label></ion-col>
+          <ion-col size="6" size-sm="4">
+            <span class="dn-fs-xsmall">{{ln.state || "State"}}</span>
+            <input type="text" [(ngModel)]="act_contact.state">
+          </ion-col>
+          <ion-col size="6" size-sm="4">
+            <span class="dn-fs-xsmall">{{ln.city || "City"}}</span>
+            <input type="text" [(ngModel)]="act_contact.city">
+          </ion-col>
+          <ion-col size="6" size-sm="4">
+            <span class="dn-fs-xsmall">{{ln.street || "Street"}}</span>
+            <input type="text" [(ngModel)]="act_contact.street">
+          </ion-col>
+          <ion-col size="6" size-sm="12">
+            <span class="dn-fs-xsmall">{{ln.address || "Address"}}</span>
+            <input type="text" [(ngModel)]="act_contact.address">
+          </ion-col>
+          <ion-col class="ion-margin-top" size="12"><ion-label class="dn-fs-xsmall">{{ln.phone || 'Phone'}}</ion-label></ion-col>
+          <ion-col size="12" size-sm="6">
+            <span class="dn-fs-xsmall">{{ln.primary_phone || "Primary Phone"}}</span>
+            <input type="tel" [(ngModel)]="act_contact.phone">
+          </ion-col>
+          <ion-col size="12" size-sm="6">
+            <span class="dn-fs-xsmall">{{ln.alternate_phone || "Alternate Phone"}}</span>
+            <input type="tel" [(ngModel)]="act_contact.alternate_phone">
+          </ion-col>
+          <ion-col class="ion-margin-top" size="12"><ion-label class="dn-fs-xsmall">{{ln.email || 'Email'}}</ion-label></ion-col>
+          <ion-col size="12" size-sm="6">
+            <span class="dn-fs-xsmall">{{ln.primary_email || "Primary Email"}}</span>
+            <input type="tel" [(ngModel)]="act_contact.email">
+          </ion-col>
+          <ion-col size="12" size-sm="6">
+            <span class="dn-fs-xsmall">{{ln.alternate_email || "Alternate Email"}}</span>
+            <input type="tel" [(ngModel)]="act_contact.alternate_email">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-content>
+    <ion-footer>
+      <ion-toolbar>
+        <ion-button slot="end" class="ion-margin-end" (click)="act_process()">
+          {{ln.save || "Save"}}
+          <ion-icon name="save-outline" slot="end"></ion-icon>
+        </ion-button>
+      </ion-toolbar>
+    </ion-footer>
+  </ng-template>
+</ion-modal>
+

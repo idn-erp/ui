@@ -36,6 +36,14 @@ const routes: Routes = [
       {
         path: 'task-details',
         loadChildren: () => import('./task-details/task-details.module').then( m => m.TaskDetailsPageModule)
+      },
+      {
+        path: 'attachment',
+        loadChildren: () => import('../pages/attachment/attachment.module').then( m => m.AttachmentPageModule)
+      },
+      {
+        path: 'add-attachment',
+        loadChildren: () => import('../pages/add-attachment/add-attachment.module').then( m => m.AddAttachmentPageModule)
       }
     ]
   }

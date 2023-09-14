@@ -2,6 +2,8 @@ import { HttpClient, HttpEvent, HttpEventType } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/common/api.service';
+import { AttachmentService } from 'src/app/services/common/attachment.service';
+import { TokenService } from 'src/app/services/common/token.service';
 import { attachment } from 'src/app/types/interfaces';
 import { environment } from 'src/environments/environment';
 
@@ -15,94 +17,118 @@ export class AttachmentComponent  implements OnInit {
   constructor(
     private api: ApiService,
     private route: ActivatedRoute,
+    private ats: AttachmentService,
+    private tkn: TokenService,
     private http: HttpClient
   ) { }
 
   env: any = environment;
   ln: any = this.api.ln.data;
 
-  @Input() object_type: string = ""; // The type of the object to attach files to
-  @Input() object_id_key: string = ""; // The key of the object id in the url params
-  object_id: string = ""; // The id of the object to attach files to
-  attachments: attachment[] = []; // The array of attachment objects
-  uploadProgress: number = 0; // The progress of the upload in percentage
-  uploadStatus: string = ''; // The status of the upload
+  @Input() object_type: string = "";
+  @Input() object_id_key: string = "";
+  object_id: string = "";
 
   ngOnInit() {
-    this.route.params.subscribe((params) => {
+    this.route.queryParams.subscribe((params) => {
       this.object_id = params[this.object_id_key];
+      this.load()
     });
   }
 
+  all: attachment[] = []
+  async load(){
+    this.all = await this.ats.get(this.object_type, this.object_id)
+  }
 
-  onFileChange(event:any) {
-    // This function is called when files are selected
-    const files = event.target.files; // Get the files from the event
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i]; // Get each file
-      const reader = new FileReader(); // Create a file reader
-      reader.onload = () => {
-        // When the reader is loaded
-        const attachment: attachment = {
-          // Create an attachment object
-          file: file, // Set the file object
-          name: file.name, // Set the name as the file name
-          info: '', // Set the info as empty string
-          preview: reader.result, // Set the preview as the reader result
-        };
-        if (!file.type.startsWith('image/')) {
-          // If the file is not an image
-          attachment.preview =
-            'assets/icon/document-attach.png'; // Set the preview as an icon
-        }
-        this.attachments.push(attachment); // Push the attachment to the array
-      };
-      reader.readAsDataURL(file); // Read the file as data url
+  is_add_open: boolean = false
+  new_files: attachment[] = []
+  add_init(){
+    this.is_add_open = true
+  }
+  async on_select( ev: any ){
+    const files = ev.target.files
+    let i = 0
+    while(i<files.length){
+      const f: File = files[i]
+      const a: attachment = {
+        file: f,
+        name: f.name,
+        file_size : (f.size/1000).toFixed(0) + ' Kb',
+        preview: "assets/icon/document-attach.png"
+      }
+      if(f.type.startsWith("image/")){
+        const r = new FileReader()
+        r.onload = ()=>{ a.preview = r.result }
+        r.readAsDataURL(f)
+      }
+      this.new_files.push(a);
+      i++
+    }
+  }
+  add_remove(index:number) {
+    this.new_files.splice(index, 1)
+  }
+  async add_process(){
+    if(this.new_files.length==0)
+      return this.api.Toast(this.ln.no_file_selected || "No files selected")
+    await this.api.showLoader(this.ln.uploading || "Uploading" )
+    while( this.new_files.length>0 ){
+      let f = this.new_files[0]
+      const fd = new FormData()
+      fd.append("object_type", this.object_type)
+      fd.append("object_id", this.object_id)
+      fd.append("name", f.name as string)
+      fd.append("info", f.info as string)
+      fd.append("File", f.file as File, f.file?.name)
+      f.busy = true
+      const res: any = await this.api.post( 'attachment/save', fd, true )
+      f.busy = false
+      f.error = res.ok
+      if(!res.ok) break
+      else this.new_files.splice(0,1)
+    }
+    if(this.new_files.length>0) this.api.Toast( this.ln.file_error || "File Error" )
+    else{
+      this.load()
+      this.api.Toast(this.ln.file_uploaded_successfully || "File uploaded successfully")
+    }
+    this.api.hideLoader()
+    this.is_add_open = false
+  }
+
+  selected: attachment = {}
+  view_idx: number = 0
+  is_view_open: boolean = false
+  async view_init(idx: number=0){
+    this.view_idx = idx
+    this.selected = this.all[idx]
+    this.selected.preview = "/assets/icon/document-attach.png"
+    if(this.selected.file_type?.startsWith('image/'))
+      this.selected.preview = await this.ats.get_preview(this.selected)
+    this.is_view_open = true
+  }
+  async download(){
+    const p: string = await this.ats.get_preview(this.selected)
+    this.api.download( this.selected.name as string, p )
+  }
+
+  async remove(a: attachment){
+    const ans: boolean = await this.api.confirm(
+      this.ln.delete_attachment || "Delete Attachment?",
+      this.ln.do_you_want_to_delete_attachment || "Do you want to delete this attachment?",
+      this.ln.delete || "Delete",
+      this.ln.no || "No"
+    )
+    if(ans){
+      const res: any = await this.ats.remove(a)
+      if(res){
+        this.api.Toast(this.ln.attachment_deleted || "Attachment Deleted")
+        this.load()
+      }else this.api.Toast(this.ln.unable_to_delete || "Unable to delete")
     }
   }
 
-  removeAttachment(index:number) {
-    // This function is called when an attachment is removed
-    this.attachments.splice(index, 1); // Remove the attachment from the array by index
-  }
 
-  saveAttachments() {
-    // This function is called when the save button is clicked
-    const formData = new FormData(); // Create a form data object
-    formData.append('object_type', this.object_type); // Append the object type to the form data
-    formData.append('object_id', this.object_id); // Append the object id to the form data
-    for (let i = 0; i < this.attachments.length; i++) {
-      // For each attachment in the array
-      const att = this.attachments[i]; // Get the attachment object
-      formData.append('files', att.file as any); // Append the file to the form data with key 'files'
-      formData.append('names', att.name as string); // Append the name to the form data with key 'names'
-      formData.append('infos', att.info as string); // Append the info to the form data with key 'infos'
-    }
-    this.http.post(this.env.api_url + 'attachment/save', formData, { observe: 'events' }).subscribe(
-      (event: HttpEvent<any>) => {
-        // Post the form data to the server using http client and subscribe to the events
-        switch (event.type) {
-          case HttpEventType.Sent:
-            // When the request is sent
-            this.uploadStatus = 'Uploading...'; // Set the upload status as 'Uploading...'
-            break;
-          case HttpEventType.Response:
-            // When a response is received
-            this.uploadStatus = 'Upload completed.'; // Set the upload status as 'Upload completed.'
-            break;
-          case HttpEventType.UploadProgress:
-            // When an upload progress event is received
-            this.uploadProgress = Math.round(
-              (100 * event.loaded) / (event.total || 1),
-            ); // Calculate and set the upload progress in percentage
-            break;
-        }
-      },
-      (error) => {
-        // When an error occurs
-        this.uploadStatus = 'Upload failed.'; // Set the upload status as 'Upload failed.'
-        console.error(error); // Log the error to the console
-      },
-    );
-  }
+
 }

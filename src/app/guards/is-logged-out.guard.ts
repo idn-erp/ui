@@ -8,5 +8,5 @@ export const IsLoggedOutGuard: CanActivateFn = (
 )=>{
   const api = inject(ApiService);
   const rtr = inject(Router);
-  return !api.isLoggedIn || rtr.createUrlTree(['/pm']);
+  return !api.isLoggedIn || rtr.createUrlTree(['/dash']);
 }

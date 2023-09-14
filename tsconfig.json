@@ -2,6 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "strictNullChecks" : false,
     "typeRoots": ["./types"],
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",

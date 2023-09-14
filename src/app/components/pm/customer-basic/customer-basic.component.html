@@ -1,19 +1,25 @@
+<ion-item color="light" lines="none">
+  <ion-label>{{ln.customer_info || 'Customer Info'}}</ion-label>
+  <ion-button size="small" color="primary" fill="clear">
+    {{ln.edit || "Edit"}}
+  </ion-button>
+</ion-item>
 <div *ngIf="cust.id">
-  <ion-item>
+  <ion-item lines="none">
     <ion-icon [name]="cust.type + '-circle-outline'"></ion-icon>
     <ion-label class="ion-margin-start">
       <p>{{ln.name || "Name"}}</p>
       <h2>{{cust.name}}</h2>
     </ion-label>
   </ion-item>
-  <ion-item>
+  <ion-item lines="none">
     <ion-icon name="information-circle-outline"></ion-icon>
     <ion-label class="ion-margin-start">
       <p>{{ln.type || "Type"}}</p>
       <h2>{{cust.type}}</h2>
     </ion-label>
   </ion-item>
-  <ion-item>
+  <ion-item lines="none">
     <ion-icon name="calendar-outline"></ion-icon>
     <ion-label class="ion-margin-start">
       <p>{{ln.created_date || "Created Date"}}</p>

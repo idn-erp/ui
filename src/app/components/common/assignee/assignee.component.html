@@ -1,24 +1,24 @@
-<ion-list>
-  <ion-list-header color="light">
-    <ion-label>{{ln.assignees || "Assignees"}}</ion-label>
-    <ion-button fill="clear" color="secondary" (click)="add_init()">
-      {{ln.add || 'Add'}}
-    </ion-button>
-  </ion-list-header>
-  <ion-item *ngIf="all.length==0 && !busy">
-    <ion-icon color="secondary" size="large" name="alert-circle-outline"></ion-icon>
-    <ion-label color="secondary" class="ion-margin-start">
-      <h2>{{ln.no_asignees_found || 'No assignees found'}}</h2>
-    </ion-label>
-  </ion-item>
-  <ion-item lines="none" *ngFor="let u of all">
-    <ion-icon name="person-circle-outline"></ion-icon>
-    <ion-label class="ion-margin-start">
-      <h4>{{u.user?.name}}</h4>
-    </ion-label>
-    <ion-button color="danger" fill="clear" (click)="remove(u)">
-      <ion-icon name="trash"></ion-icon>
-    </ion-button>
-  </ion-item>
-</ion-list>
+<ion-item lines="none" color="light">
+  <ion-label>
+    {{ln.assignees || "Assignees"}}
+  </ion-label>
+  <ion-button fill="clear" color="secondary" (click)="add_init()">
+    {{ln.add || 'Add'}}
+  </ion-button>
+</ion-item>
+<ion-item *ngIf="all.length==0 && !busy" lines="none">
+  <ion-icon color="success" name="alert-circle-outline"></ion-icon>
+  <ion-label color="success" class="ion-margin-start">
+    <h2>{{ln.no_asignees_found || 'No assignees found'}}</h2>
+  </ion-label>
+</ion-item>
+<ion-item lines="none" *ngFor="let u of all">
+  <ion-icon name="person-circle-outline"></ion-icon>
+  <ion-label class="ion-margin-start">
+    <h4>{{u.user?.name}}</h4>
+  </ion-label>
+  <ion-button color="danger" fill="clear" (click)="remove(u)">
+    <ion-icon name="trash"></ion-icon>
+  </ion-button>
+</ion-item>
 

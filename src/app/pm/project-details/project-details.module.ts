@@ -9,6 +9,7 @@ import { ProjectDetailsPageRoutingModule } from './project-details-routing.modul
 import { ProjectDetailsPage } from './project-details.page';
 import { ProjectBasicModule } from 'src/app/components/pm/project-basic/project-basic.module';
 import { ProjectTaskModule } from 'src/app/components/pm/project-task/project-task.module';
+import { AttachmentModule } from 'src/app/components/common/attachment/attachment.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { ProjectTaskModule } from 'src/app/components/pm/project-task/project-ta
     IonicModule,
     ProjectDetailsPageRoutingModule,
     ProjectBasicModule,
-    ProjectTaskModule
+    ProjectTaskModule,
+    AttachmentModule
   ],
   declarations: [ProjectDetailsPage]
 })

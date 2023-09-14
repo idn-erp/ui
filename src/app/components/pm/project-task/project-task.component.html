@@ -38,21 +38,15 @@
           </ion-button>
         </ion-buttons>
       </ion-toolbar>
-      <ion-item class="ion-margin-start" *ngFor="let st of t.kids;index as idx2">
+      <ion-item class="ion-margin-start dn-fs-small" *ngFor="let st of t.kids;index as idx2">
         <ion-badge color="light" class="ion-margin-end">{{idx+1}}.{{idx2+1}}</ion-badge>
-        <ion-label><app-task-item [tsk]="st"></app-task-item></ion-label>
-        <ion-chip color="secondary" routerLink="/pm/task-details" queryParamsHandling="merge" [queryParams]="{task_id:st.id}" class="dn-fs-small">
-          <ion-label>{{ln.open || "open"}}</ion-label>
-          <ion-icon class="dn-fs-small" name="open-outline"></ion-icon>
-        </ion-chip>
-        <ion-buttons>
-          <ion-button color="danger" (click)="remove(st)">
-            <ion-icon name="trash-outline" class="dn-fs-small"></ion-icon>
-          </ion-button>
-          <ion-button color="secondary" (click)="edit_init(st)">
-            <ion-icon name="create-outline" class="dn-fs-small"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+        <ion-label routerLink="/pm/task-details" queryParamsHandling="merge" [queryParams]="{task_id:st.id}"><app-task-item [tsk]="st"></app-task-item></ion-label>
+        <ion-badge color="light" (click)="remove(st)">
+          <ion-icon color="danger" name="trash-outline" class="dn-fs-small"></ion-icon>
+        </ion-badge>&nbsp;
+        <ion-badge color="light" (click)="edit_init(st)">
+          <ion-icon color="secondary" name="create-outline" class="dn-fs-small"></ion-icon>
+        </ion-badge>
       </ion-item>
     </div>
   </div>

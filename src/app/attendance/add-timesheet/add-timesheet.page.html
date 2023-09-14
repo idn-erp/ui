@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" class="ion-margin-start">
+      <ion-back-button defaultHref="/attendance/timesheet"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ln.add_timesheet || "Add Timesheet"}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="4">
+        <ion-item fill="outline" lines="none">
+          <ion-icon name="calendar-outline"></ion-icon>
+          <ion-input [label]="ln.date || 'Date'" labelPlacement="floating" class="ion-margin-start" type="date"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" size-sm="6">
+        <ion-item fill="outline" lines="none">
+          <ion-icon name="document-attach-outline"></ion-icon>
+          <ion-input 
+            [label]="ln.file || 'File'" 
+            labelPlacement="floating" 
+            class="ion-margin-start" 
+            type="file"
+            (change)="onFileSelected($event)"
+            accept="application/vnd.ms-excel"
+          ></ion-input>
+          <ion-button size="medium">
+            SAVE
+            <ion-icon name="save-outline" slot="end"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <table>
+    <tr *ngFor="let r of data">
+      <td *ngFor="let c of r">{{c}}</td>
+    </tr>
+  </table>
+</ion-content>

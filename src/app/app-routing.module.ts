@@ -19,8 +19,17 @@ const routes: Routes = [
     canActivate : [IsLoggedOutGuard]
   },
   {
+    path: 'dash',
+    loadChildren: () => import('./dash/dash.module').then( m => m.DashPageModule)
+  },
+  {
     path: 'pm',
     loadChildren: () => import('./pm/pm.module').then( m => m.PmPageModule),
+    canActivate : [IsLoggedInGuard]
+  },
+  {
+    path: 'attendance',
+    loadChildren: () => import('./attendance/attendance.module').then( m => m.AttendancePageModule),
     canActivate : [IsLoggedInGuard]
   },
 ];

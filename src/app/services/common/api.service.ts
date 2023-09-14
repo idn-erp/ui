@@ -67,23 +67,16 @@ export class ApiService {
     );
   }
 
-  post( path: String, data: any ){
+  post( path: String, data: any, fd: boolean=false ){
     return new Promise(
       Res=>{
         this.http.post(
           `${this.env.api_url}${path}`,
-          { data : data },
+          fd ? data : { data : data },
           { headers : { Authorization: this.token } }
         ).subscribe( res => Res(res) )
       }
     );
-  }
-
-  save(
-    p: string,
-    fd: FormData
-  ){
-
   }
 
   authenticate( email: String, password: String ){
@@ -147,6 +140,14 @@ export class ApiService {
     alert.present();
     const {role} = await alert.onDidDismiss();
     return role=='confirm';
+  }
+
+  download(name: string, url: string){
+    let a = document.createElement('a')
+    a.download = name
+    a.href = url
+    a.target = "_blank"
+    a.click()
   }
 
 }

@@ -11,13 +11,8 @@
   <ion-grid>
     <ion-row>
       <ion-col size="12" size-sm="6" size-md="4">
-        <ion-toolbar color="light">
-          <ion-title>{{ln.customer_info || 'Customer Info'}}</ion-title>
-          <ion-button class="ion-margin-end" fill="clear" slot="end">
-            {{ln.edit || "Edit"}}
-          </ion-button>
-        </ion-toolbar>
         <app-customer-basic></app-customer-basic>
+        <app-contact object_type="customer" object_id_key="customer_id"></app-contact>
       </ion-col>
       <ion-col size="12" size-sm="6" size-md="4">
         <app-customer-projects></app-customer-projects>

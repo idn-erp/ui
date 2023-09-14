@@ -1,46 +1,112 @@
-  <!-- The header of the component -->
-  <ion-toolbar>
-    <!-- The toolbar of the header -->
-    <ion-title>Attachment Component</ion-title> <!-- The title of the component -->
-  </ion-toolbar>
-
-  <ion-item lines="none">
-    <ion-label>
-      <input 
-        type="file"
-        id="file-input" 
-        multiple 
-        (change)="onFileChange($event)"
-      >
+<ion-item lines="none" color="light">
+  <ion-label>
+    {{ln.attachments || 'Attachments'}}
+  </ion-label>
+  <ion-button size="small" fill="clear" (click)="add_init()" color="secondary">
+    {{ln.add || 'Add'}}
+  </ion-button>
+</ion-item>
+<ion-item lines="none" *ngIf="all.length==0">
+  <ion-icon color="success" name="alert-circle-outline"></ion-icon>
+  <ion-label color="success" class="ion-margin-start">
+    {{ln.no_attachments_found || "No attachments found"}}
+  </ion-label>
+</ion-item>
+<div style="overflow: auto;max-height:300px;">
+  <ion-item *ngFor="let a of all;index as idx" lines="none">
+    <ion-icon *ngIf="(a.file_type || '').startsWith('image/')" name="image-outline"></ion-icon>
+    <ion-icon *ngIf="!(a.file_type || '').startsWith('image/')" name="document-attach-outline"></ion-icon>
+    <ion-label class="dn-fs-xsmall ion-margin-start">
+      <b class="dn-fs-small">{{a.name}}</b>
+      <br>
+      {{a.user?.name}} | {{a.created_at | date}}
     </ion-label>
-    <ion-chip color="primary" (click)="saveAttachments()">
-      <ion-label>{{ln.save || 'SAVE'}}</ion-label>
-      <ion-icon name="save-outline"></ion-icon>
-    </ion-chip>
+    <ion-badge color="light" (click)="view_init(idx)">
+      <ion-icon color="secondary" class="dn-fs-xsmall" name="eye-outline"></ion-icon>
+    </ion-badge>
+    &nbsp;
+    <ion-badge color="light" (click)="remove(a)">
+      <ion-icon color="danger" class="dn-fs-xsmall" name="trash-outline"></ion-icon>
+    </ion-badge>
   </ion-item>
+</div>
 
-  <div *ngIf="uploadStatus">
-    <!-- A div element for displaying upload status, use ngIf directive to show it only if uploadStatus is truthy -->
-    <p>{{ uploadStatus }}</p> <!-- Display the uploadStatus property -->
-    <progress [value]="uploadProgress" max="100"></progress>
-    <!-- A progress element for displaying upload progress, bind the value attribute to the uploadProgress property and set max as 100 -->
-  </div>
+<ion-modal [isOpen]='is_add_open' (didDismiss)='is_add_open=false'>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>{{ln.upload_attachments || "Upload Attachments"}}</ion-title>
+        <ion-buttons slot='end' (click)='is_add_open=false'>
+          <ion-button><ion-icon name='close' slot='icon-only'></ion-icon></ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-item fill="solid">
+        <ion-icon class="ion-margin-end" name="document-attach-outline"></ion-icon>
+        <ion-input 
+          [label]="ln.select_files || 'Select Files'"
+          labelPlacement="floating"
+          type="file"
+          id="file-input" 
+          multiple 
+          (change)="on_select($event)"
+        ></ion-input>
+      </ion-item>
+      <ion-list>
+        <ion-item *ngFor="let a of new_files; index as idx">
+          <ion-thumbnail slot="start">
+            <img [src]="a.preview" />
+          </ion-thumbnail>
+          <ion-label>
+            <input type="text" placeholder="Enter name" [(ngModel)]="a.name" />
+            <br>
+            <input type="text" placeholder="Enter info" [(ngModel)]="a.info" />
+          </ion-label>
+          <ion-badge color="light">{{a.file_size}}</ion-badge>
+          <ion-icon name="close-circle" slot="end" (click)="add_remove(idx)" ></ion-icon>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+    <ion-footer>
+      <ion-toolbar>
+        <ion-button slot="end" class="ion-margin-end" (click)="add_process()">
+          UPLOAD
+          <ion-icon name="save-outline" slot="end"></ion-icon>
+        </ion-button>
+      </ion-toolbar>
+    </ion-footer>
+  </ng-template>
+</ion-modal>
 
-  
-  <!-- The content of the component -->
-  <ion-list>
-    <!-- The list of attachments -->
-    <ion-item *ngFor="let attachment of attachments; let i = index">
-      <!-- Loop through each attachment in the array and display it as an item with an index -->
-      <ion-thumbnail slot="start">
-        <!-- The thumbnail of the attachment -->
-        <img [src]="attachment.preview" /> <!-- Bind the src attribute to the preview property of the attachment object -->
-      </ion-thumbnail>
-      <ion-label>
-        <input type="text" placeholder="Enter name" [(ngModel)]="attachment.name" />
-        <br>
-        <input type="text" placeholder="Enter info" [(ngModel)]="attachment.info" />
-      </ion-label>
-      <ion-icon name="close-circle" slot="end" (click)="removeAttachment(i)" ></ion-icon>
-    </ion-item>
-  </ion-list>
+<ion-modal [isOpen]='is_view_open' (didDismiss)='is_view_open=false'>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>{{selected.name}}</ion-title>
+        <ion-buttons slot='end' (click)='is_view_open=false'>
+          <ion-button><ion-icon name='close' slot='icon-only'></ion-icon></ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <img [src]="selected.preview" [attr.alt]="selected.name">
+    </ion-content>
+    <ion-footer>
+      <ion-toolbar>
+        <ion-button (click)="download()" fill="clear" color="success">
+          DOWNLOAD
+          <ion-icon name="download-outline" slot="end"></ion-icon>
+        </ion-button>
+        <ion-buttons slot="end" class="ion-margin-end">
+          <ion-button (click)="view_init(view_idx-1)" [disabled]="view_idx==0">
+            {{ln.prev || "prev"}}
+          </ion-button>
+          <ion-button (click)="view_init(view_idx+1)" [disabled]="(view_idx+1)==all.length">
+            {{ln.next || "next"}}
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-footer>
+  </ng-template>
+</ion-modal>
