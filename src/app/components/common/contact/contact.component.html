@@ -6,18 +6,22 @@
     Add
   </ion-button>
 </ion-item>
-<ion-item *ngFor="let c of all">
-  <ion-label>
+<ion-item *ngIf="all.length==0" lines="none">
+  <ion-icon name="alert-circle-outline" color="success"></ion-icon>
+  <ion-label class="ion-margin-start" color="success">{{ln.no_contacts || 'No Contacts'}}</ion-label>
+</ion-item>
+<ion-item *ngFor="let c of all" lines="none">
+  <ion-label classs="ion-text-wrap">
     <h4>{{c.full_name}}</h4>
     <div class="dn-fs-xsmall">
-      {{c.country?.name}}
+      {{c.country.name}}
       <span *ngIf="c.state">, {{c.state}}</span>
       <span *ngIf="c.city">, {{c.city}}</span>
       <span *ngIf="c.street">, {{c.street}}</span>
-      <span *ngIf="c.address">, {{c.address}}</span>
+      <span *ngIf="c.address"><br>{{c.address}}</span>
       <span *ngIf="c.postal_code">, {{c.postal_code}}</span>
       <br>
-      <span *ngIf="c.phone">+{{c.country?.code}} {{c.phone}}</span><span *ngIf="c.email"> - {{c.email}}</span>
+      <span *ngIf="c.phone">+{{c.country.code}} {{c.phone}}</span><span *ngIf="c.email"> - {{c.email}}</span>
     </div>
   </ion-label>
   <ion-badge color="light" (click)="act_init('edit', c)">

@@ -40,3 +40,48 @@ input:focus,select:focus{border:solid 1px aqua;}
 .dn-fs-xxsmall{font-size: xx-small !important;}
 .dn-fs-xsmall{font-size: x-small !important;}
 .dn-fs-smaller{font-size: smaller !important;}
+.dn-table{width:100%;text-align: start !important;}
+.dn-table thead tr{font-weight:bold;background-color: #f9f9f9;border-bottom: solid 2px teal;}
+.dn-table td{padding:10px 5px;}
+
+/* Background color utilities */
+.bg-primary { background-color: #007bff !important; }
+.bg-secondary { background-color: #6c757d !important; }
+.bg-success { background-color: #28a745 !important; }
+.bg-info { background-color: #17a2b8 !important; }
+.bg-warning { background-color: #ffc107 !important; }
+.bg-danger { background-color: #dc3545 !important; }
+.bg-light { background-color: #f8f9fa !important; }
+.bg-dark { background-color: #343a40 !important; }
+.bg-white { background-color: #fff !important; }
+
+/* Text color utilities */
+.text-primary { color: #007bff !important; }
+.text-secondary { color: #6c757d !important; }
+.text-success { color: #28a745 !important; }
+.text-info { color: #17a2b8 !important; }
+.text-warning { color: #ffc107 !important; }
+.text-danger { color: #dc3545 !important; }
+.text-light { color: #f8f9fa !important; }
+.text-dark { color: #343a40 !important; }
+
+/* Border color utilities */
+.border-primary { border-color: #007bff !important; }
+.border-secondary { border-color: #6c757d !important; }
+.border-success { border-color: #28a745 !important; }
+.border-info { border-color: #17a2b8 !important; }
+.border-warning { border-color: #ffc107 !important; }
+.border-danger { border-color: #dc3545 !important; }
+.border-light { border-color: #f8f9fa !important; }
+.border-dark { border-color: #343a40 !important; }
+
+/* font size utilities */
+.fs-xxsmall { font-size: xx-small !important; }
+.fs-xsmall { font-size: x-small !important; }
+.fs-smaller { font-size: smaller !important; }
+.fs-small { font-size: small !important; }
+.fs-normal { font-size: normal !important; }
+.fs-medium { font-size: medium !important; }
+.fs-large { font-size: large !important; }
+.fs-xlarge { font-size: x-large !important; }
+.fs-xxlarge { font-size: xx-large !important; }

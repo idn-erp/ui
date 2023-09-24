@@ -1,0 +1,116 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" class="ion-margin-start">
+      <app-back-button></app-back-button>
+    </ion-buttons>
+    <ion-title>{{ln.add_timesheet || "Add Timesheet"}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="4">
+        <ion-item lines="none" color="light">
+          <ion-icon class="ion-margin-start" name="calendar-number-outline"></ion-icon>
+          <ion-input [label]="ln.date || 'Date'" [(ngModel)]="date" labelPlacement="floating" class="ion-margin-start" type="date"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" size-sm="4">
+        <ion-item lines="none" color="light">
+          <ion-icon name="calendar-outline" class="ion-margin-start"></ion-icon>
+          <ion-select [(ngModel)]="selected_shift_code" class="ion-margin-start">
+            <ion-select-option *ngFor="let s of shifts" [value]="s.code">
+              {{s.name}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" size-sm="4">
+        <ion-item lines="none" color="light">
+          <ion-icon name="document-attach" class="ion-margin-start"></ion-icon>
+          <ion-input
+            [disabled]="!selected_shift_code || !date"
+            [label]="ln.file || 'File'" 
+            labelPlacement="floating"
+            class="ion-margin-start"
+            type="file"
+            (change)="onFileSelected($event)"
+            accept="application/vnd.ms-excel"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <table class="dn-table fs-small">
+          <thead>
+            <tr>
+              <td>#</td>
+              <td>File</td>
+              <td>Name</td>
+              <td>Shift</td>
+              <td>In Time</td>
+              <td>Is In Delayed</td>
+              <td>Out Time</td>
+              <td>Is Out Early</td>
+              <td>Is Absent</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let u of users; index as idx">
+              <td>{{idx+1}}</td>
+              <td>{{u.file}}</td>
+              <td>{{u.name}}
+                <ion-badge *ngIf="!u.user_id" color="danger">{{ln.user_not_found || 'User not found'}}</ion-badge>
+              </td>
+              <td>
+                <select *ngIf="u.shift" [(ngModel)]="u.shift">
+                  <option *ngFor="let s of u.shifts" [value]="s">{{s.name}}</option>
+                </select>
+              </td>
+              <td>
+                <span *ngIf="u.in_time">{{(u.date + ' ' + u.in_time.h + ':' + u.in_time.m) | date : 'hh:mm a'}}</span>
+                <span *ngIf="!u.in_time">--</span>
+              </td>
+              <td>
+                <ion-badge color="warning" *ngIf="u.is_in_delay=='yes'">
+                  {{ln.delayed || 'Delayed'}}
+                </ion-badge>
+                <span *ngIf="u.is_in_delay!='yes'">--</span>
+              </td>
+              <td>
+                <span *ngIf="u.out_time">{{(u.date + ' ' + u.out_time.h + ':' + u.out_time.m) | date : 'hh:mm a'}}</span>
+                <span *ngIf="!u.out_time">--</span>
+              </td>
+              <td>
+                <ion-badge color="warning" *ngIf="u.is_out_early=='yes'">
+                  {{ln.early || 'Early'}}
+                </ion-badge>
+                <span *ngIf="u.is_out_early!='yes'">--</span>
+              </td>
+              <td>
+                <ion-badge color="warning" *ngIf="u.is_absent=='yes'">
+                  {{ln.absent || 'Absent'}}
+                </ion-badge>
+                <span *ngIf="u.is_absent!='yes'">--</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-toolbar color="light">
+    <ion-button (click)="reset()" color="primary" fill="clear" slot="end" class="ion-margin-end">
+      {{ln.reset || 'Reset'}}
+      <ion-icon name="refresh-outline" slot="end"></ion-icon>
+    </ion-button>
+    <ion-button (click)="save()" color="primary" slot="end" class="ion-margin-end">
+      {{ln.save || 'Save'}}
+      <ion-icon name="save-outline" slot="end"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

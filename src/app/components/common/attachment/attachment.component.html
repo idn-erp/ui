@@ -19,7 +19,7 @@
     <ion-label class="dn-fs-xsmall ion-margin-start">
       <b class="dn-fs-small">{{a.name}}</b>
       <br>
-      {{a.user?.name}} | {{a.created_at | date}}
+      {{a.user.name}} | {{a.created_at | date}}
     </ion-label>
     <ion-badge color="light" (click)="view_init(idx)">
       <ion-icon color="secondary" class="dn-fs-xsmall" name="eye-outline"></ion-icon>

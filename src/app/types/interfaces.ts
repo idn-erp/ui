@@ -83,16 +83,25 @@ export interface assignee{
 
 export interface user{
 	id?: number | string
-	code?: string
+	file?: string
 	name?: string
 	email?: string
 	password?: string
 	language?: string
 	is_active?: boolean
 
+	departments?: department[]
+	designations?: designation[]
+	shifts?: shift[]
+	groups?: group[]
+}
+
+export interface user_filter extends user{
 	department_id?: string | number
 	designation_id?: string | number
 	group_id?: string | number
+	shift_id?: string | number
+	page?: number
 }
 
 export interface group{
@@ -119,6 +128,16 @@ export interface department{
 	name?: string
 	created_by?: number
 	created_date?: string
+	is_active?: boolean
+}
+export interface user_department{
+	id?: string
+	user_id?: string
+	department_id?: string
+	code?: string
+	name?: string
+	is_current?: boolean
+	start_date?: string
 	is_active?: boolean
 }
 
@@ -175,18 +194,58 @@ export interface country {
 	is_active?: number
 }
 
-export interface Timesheet {
+export interface timesheet {
 	id?: number;
-	date?: Date;
+	date?: string;
 	file?: string;
 	name?: string;
 	user_id?: number;
-	in_time?: string | null;
-	out_time?: string | null;
+	shift_id?: number;
+	in_time?: any;
+	out_time?: any;
 	is_in_delay?: 'yes' | 'no' | 'none';
 	is_out_early?: 'yes' | 'no' | 'none';
 	is_absent?: 'yes' | 'no' | 'none';
-	created_at?: Date;
+	created_at?: string;
+	created_by?: number;
+	is_active?: number;
+
+	shift_code?: string[]
+	shifts?: shift[]
+	shift?: shift
+}
+
+export interface timesheet_filter{
+	type?: 'range' | 'specific'
+	date?: string
+	date_from?: string
+	date_to?: string
+	department_id?: string | number
+	file?: string
+	name?: string
+	shift_id?: string | number
+	is_in_delay?: 'yes' | 'no' | 'none' | 'all'
+	is_out_early?: 'yes' | 'no' | 'none' | 'all'
+	is_absent?: 'yes' | 'no' | 'none' | 'all'
+	sort_by?: 'file' | 'name' | 'position'
+}
+  
+
+export interface shift {
+	id?: number;
+	code?: string;
+	name?: string;
+	info?: string | null;
+	pos?: number;
+	in_start?: any;
+	in_delay?: any;
+	in_end?: any; 
+	out_start?: any; 
+	out_early?: any; 
+	out_end?: any; 
+	start_date?: string;
+	end_date?: string | null;
+	created_date?: string;
 	created_by?: number;
 	is_active?: number;
 }

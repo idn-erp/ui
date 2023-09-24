@@ -150,4 +150,9 @@ export class ApiService {
     a.click()
   }
 
+  fix_date( d: string ){
+    let a = d.split('/')
+    return `${a[2]}-${a[0]}-${a[1]}`
+  }
+
 }

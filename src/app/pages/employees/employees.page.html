@@ -1,0 +1,105 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" class="ion-margin-start">
+      <ion-back-button defaultHref="/dash"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ln.employees || 'Employees'}}</ion-title>
+    <ion-buttons slot="end" class="ion-margin-end">
+      <ion-button>
+        <ion-icon name="add-circle-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row class="fs-small">
+      <ion-col size="6" size-sm="3">
+        {{ln.file || "File"}}
+        <input type="text" [placeholder]="ln.all || 'All'" [(ngModel)]="filter.file">
+      </ion-col>
+      <ion-col size="6" size-sm="3">
+        {{ln.name || "Name"}}
+        <input type="text" [placeholder]="ln.all || 'All'" [(ngModel)]="filter.name">
+      </ion-col>
+      <ion-col size="6" size-sm="3">
+        {{ln.group || "Group"}}
+        <select [(ngModel)]="filter.group_id">
+          <option [value]="0">{{ln.all || 'All'}}</option>
+          <option *ngFor="let g of groups" [value]="g.id">
+            {{ln[g.code] || g.name}}
+          </option>
+        </select>
+      </ion-col>
+      <ion-col size="6" size-sm="3">
+        {{ln.department || "Department"}}
+        <select [(ngModel)]="filter.department_id">
+          <option [value]="0">{{ln.all || 'All'}}</option>
+          <option *ngFor="let d of deps" [value]="d.id">
+            {{ln[d.code] || d.name}}
+          </option>
+        </select>
+      </ion-col>
+      <ion-col size="6" size-sm="3">
+        {{ln.designation || "Designation"}}
+        <select [(ngModel)]="filter.designation_id">
+          <option [value]="0">{{ln.all || 'All'}}</option>
+          <option *ngFor="let d of desg" [value]="d.id">
+            {{ln[d.code] || d.name}}
+          </option>
+        </select>
+      </ion-col>
+      <ion-col size="6" size-sm="3">
+        {{ln.shift || "Shift"}}
+        <select [(ngModel)]="filter.shift_id">
+          <option [value]="0">{{ln.all || 'All'}}</option>
+          <option *ngFor="let s of shifts" [value]="s.id">
+            {{ln[s.code] || s.name}}
+          </option>
+        </select>
+      </ion-col>
+      <ion-col size="12" size-sm="6">
+        <ion-toolbar>
+          <ion-button size="small" (click)="search()" slot="start">
+            Search
+            <ion-icon name="search-outline" slot="end"></ion-icon>
+          </ion-button>
+          <ion-buttons slot="end">
+            <ion-button (click)="prev()" [disabled]="filter.page==1">{{ln.prev || 'Prev'}}</ion-button>
+            {{filter.page}}
+            <ion-button (click)="next()">{{ln.next || 'Next'}}</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <table class="dn-table fs-small">
+          <thead>
+            <tr>
+              <td>#</td>
+              <td>{{ln.file || "File"}}</td>
+              <td>{{ln.name || "Name"}}</td>
+              <td>{{ln.language || "Language"}}</td>
+              <td>{{ln.action || "Action"}}</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let u of all;index as idx">
+              <td>{{(idx+1) + (filter.page-1) * 50}}</td>
+              <td>{{u.file}}</td>
+              <td>{{u.name}}</td>
+              <td>{{u.language}}</td>
+              <td>
+                <ion-button size="small" fill="clear">
+                  open
+                </ion-button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

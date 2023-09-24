@@ -15,7 +15,7 @@
 <ion-item lines="none" *ngFor="let u of all">
   <ion-icon name="person-circle-outline"></ion-icon>
   <ion-label class="ion-margin-start">
-    <h4>{{u.user?.name}}</h4>
+    <h4>{{u.user.name}}</h4>
   </ion-label>
   <ion-button color="danger" fill="clear" (click)="remove(u)">
     <ion-icon name="trash"></ion-icon>

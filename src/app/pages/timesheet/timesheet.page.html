@@ -1,0 +1,166 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" class="ion-margin-start">
+      <app-back-button></app-back-button>
+    </ion-buttons>
+    <ion-title>{{ln.timesheet || "Timesheet"}}</ion-title>
+    <ion-buttons slot="end" class="ion-margin-end" routerLink="../add-timesheet">
+      <ion-button>
+        <ion-icon name="add-circle-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row class="fs-small">
+      <ion-col size="6" size-sm="4" size-md="3">
+        {{ln.department || 'Department'}}
+        <select [(ngModel)]="filter.department_id">
+          <option [value]="0">All</option>
+          <option *ngFor="let d of deps" [value]="d.id">{{d.name}}</option>
+        </select>
+      </ion-col>
+      <ion-col size="6" size-sm="4" size-md="3">
+        {{ln.file_number || 'File number'}}
+        <input [(ngModel)]="filter.file" type="text" placeholder="all">
+      </ion-col>
+      <ion-col size="6" size-sm="4" size-md="3">
+        {{ln.employee_name || 'Name'}}
+        <input [(ngModel)]="filter.name" type="text" placeholder="all">
+      </ion-col>
+      <ion-col size="6" size-sm="4" size-md="3">
+        {{ln.shift || 'Shift'}}
+        <select [(ngModel)]="filter.shift_id">
+          <option [value]="0">All</option>
+          <option *ngFor="let s of shifts" [value]="s.id">{{s.name}}</option>
+        </select>
+      </ion-col>
+      <ion-col size="6" size-sm="4" size-md="3">
+        {{ln.delayed_checkin || 'Delayed Checkin'}}
+        <select [(ngModel)]="filter.is_in_delay">
+          <option value="all">{{ln.all || 'All'}}</option>
+          <option value="yes">{{ln.yes || 'Yes'}}</option>
+          <option value="no">{{ln.no || 'No'}}</option>
+          <option value="none">{{ln.none || 'None'}}</option>
+        </select>
+      </ion-col>
+      <ion-col size="6" size-sm="4" size-md="3">
+        {{ln.early_checkout || 'Early Checkout'}}
+        <select [(ngModel)]="filter.is_out_early">
+          <option value="all">{{ln.all || 'All'}}</option>
+          <option value="yes">{{ln.yes || 'Yes'}}</option>
+          <option value="no">{{ln.no || 'No'}}</option>
+          <option value="none">{{ln.none || 'None'}}</option>
+        </select>
+      </ion-col>
+      <ion-col size="6" size-sm="4" size-md="3">
+        {{ln.absent || 'Absent'}}
+        <select [(ngModel)]="filter.is_absent">
+          <option value="all">{{ln.all || 'All'}}</option>
+          <option value="yes">{{ln.yes || 'Yes'}}</option>
+          <option value="no">{{ln.no || 'No'}}</option>
+          <option value="none">{{ln.none || 'None'}}</option>
+        </select>
+      </ion-col>
+      <ion-col size="6" size-sm="4" size-md="3">
+        {{ln.sort_by || 'Sort By'}}
+        <select [(ngModel)]="filter.sort_by">
+          <option value="name">{{ln.name || 'Name'}}</option>
+          <option value="file">{{ln.file || 'File'}}</option>
+          <option value="pos">{{ln.position || 'Position'}}</option>
+        </select>
+      </ion-col>
+      <ion-col size="6" size-sm="4" size-md="3">
+        <div *ngIf="filter.type=='range'">
+          {{ln.from || 'From'}}
+          <input type="date" [(ngModel)]="filter.date_from">
+        </div>
+        <div *ngIf="filter.type=='specific'">
+          {{ln.select_date || 'Select Date'}}
+          <input type="date" [(ngModel)]="filter.date">
+        </div>
+        <div class="ion-margin-top">
+          <ion-badge (click)="filter.type='range'" [color]="filter.type=='range' ? 'tertiary' : 'light'" class="fs-small">
+            <ion-label>{{ln.range || "Range"}}</ion-label>
+          </ion-badge>&nbsp;
+          <ion-badge (click)="filter.type='specific'" [color]="filter.type=='specific' ? 'tertiary' : 'light'">
+            <ion-label>{{ln.specific || "Specific"}}</ion-label>
+          </ion-badge>
+        </div>
+      </ion-col>
+      <ion-col *ngIf="filter.type=='range'" size="6" size-sm="4" size-md="3">
+        {{ln.to || 'To'}}
+        <input type="date" [(ngModel)]="filter.date_to">
+      </ion-col>
+      <ion-col size="12" size-sm="8" size-md="6">
+        <ion-toolbar>
+          <ion-button (click)="search()">
+            {{ln.search || 'Search'}}
+            <ion-icon name="search-outline"></ion-icon>
+          </ion-button>
+        </ion-toolbar>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <table class="dn-table fs-small">
+        <thead>
+          <tr>
+            <td>#</td>
+            <td>File</td>
+            <td>Name</td>
+            <td>In Time</td>
+            <td>Is In Delayed</td>
+            <td>Out Time</td>
+            <td>Is Out Early</td>
+            <td>Is Absent</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="!busy && all.length==0">
+            <td colspan="8" class="ion-text-center ion-padding">
+              <ion-icon size="large" name="alert-circle-outline" color="danger"></ion-icon>
+              <div class="fs-large text-danger">
+                {{ln.no_data_found || 'No data found'}}
+              </div>
+            </td>
+          </tr>
+          <tr *ngFor="let u of all; index as idx">
+            <td>{{idx+1}}</td>
+            <td>{{u.file}}</td>
+            <td>{{u.name}}
+              <ion-badge *ngIf="!u.user_id" color="danger">{{ln.user_not_found || 'User not found'}}</ion-badge>
+            </td>
+            <td>
+              <span *ngIf="u.in_time">{{(u.date + ' ' + u.in_time.h + ':' + u.in_time.m) | date : 'hh:mm a'}}</span>
+              <span *ngIf="!u.in_time">--</span>
+            </td>
+            <td>
+              <ion-badge color="warning" *ngIf="u.is_in_delay=='yes'">
+                {{ln.delayed || 'Delayed'}}
+              </ion-badge>
+              <span *ngIf="u.is_in_delay!='yes'">--</span>
+            </td>
+            <td>
+              <span *ngIf="u.out_time">{{(u.date + ' ' + u.out_time.h + ':' + u.out_time.m) | date : 'hh:mm a'}}</span>
+              <span *ngIf="!u.out_time">--</span>
+            </td>
+            <td>
+              <ion-badge color="warning" *ngIf="u.is_out_early=='yes'">
+                {{ln.early || 'Early'}}
+              </ion-badge>
+              <span *ngIf="u.is_out_early!='yes'">--</span>
+            </td>
+            <td>
+              <ion-badge color="warning" *ngIf="u.is_absent=='yes'">
+                {{ln.absent || 'Absent'}}
+              </ion-badge>
+              <span *ngIf="u.is_absent!='yes'">--</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ion-row>
+  </ion-grid>
+</ion-content>

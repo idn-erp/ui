@@ -5,7 +5,7 @@ import { DepartmentService } from 'src/app/services/common/department.service';
 import { DesignationService } from 'src/app/services/common/designation.service';
 import { GroupService } from 'src/app/services/common/group.service';
 import { UserService } from 'src/app/services/common/user.service';
-import { department, designation, group, user } from 'src/app/types/interfaces';
+import { department, designation, group, user, user_filter } from 'src/app/types/interfaces';
 
 @Component({
   selector: 'app-user-selector',
@@ -38,7 +38,7 @@ export class UserSelectorComponent  implements OnInit {
   }
 
   users: user[] = [];
-  filter: user = { group_id : 0, department_id : 0, designation_id : 0 };
+  filter: user_filter = { group_id : 0, department_id : 0, designation_id : 0 };
   async search(){
     const u: any = await this.usr.search(this.filter)
     this.users = u;

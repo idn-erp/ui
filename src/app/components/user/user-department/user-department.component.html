@@ -1,0 +1,19 @@
+<ion-item color="light" lines="none">
+  <ion-label>
+    {{ln.departments || "Departments"}}
+  </ion-label>
+  <ion-button (click)="add_init()" fill="clear" size="small">{{ln.add || 'Add'}}</ion-button>
+</ion-item>
+<ion-item lines="none" *ngIf="all.length==0">
+  <ion-icon name="alert-circle-outline"></ion-icon>
+  <ion-label class="ion-margin-start" color="success">{{ln.no_departments_found || "No departments found"}}</ion-label>
+</ion-item>
+<ion-item *ngFor="let d of all" lines="none">
+  <ion-label classs="ion-text-wrap">
+    <h4>{{ln[d.code] || d.name}}</h4>
+    <p class="fs-xsmall">{{ln.since || 'Since'}}: {{d.start_date | date}}</p>
+  </ion-label>
+  <ion-badge color="light" class="fs-small">
+    <ion-icon name="trash" color="danger"></ion-icon>
+  </ion-badge>
+</ion-item>
