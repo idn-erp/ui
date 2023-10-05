@@ -6,6 +6,8 @@ import { UserShiftComponent } from '../user-shift/user-shift.component';
 import { UserGroupComponent } from '../user-group/user-group.component';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
+import { DepartmentSelectorModule } from '../../common/department-selector/department-selector.module';
+import { GroupSelectorModule } from '../../common/group-selector/group-selector.module';
 
 
 
@@ -19,7 +21,9 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     IonicModule,
-    FormsModule
+    FormsModule,
+    DepartmentSelectorModule,
+    GroupSelectorModule
   ],
   exports : [
     UserDepartmentComponent,

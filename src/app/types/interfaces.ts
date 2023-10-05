@@ -88,8 +88,14 @@ export interface user{
 	email?: string
 	password?: string
 	language?: string
+	can_login?: boolean
 	is_active?: boolean
 
+	dep_ids?: string[]
+	des_ids?: string[]
+	grp_ids?: string[]
+	shf_ids?: string[]
+	
 	departments?: department[]
 	designations?: designation[]
 	shifts?: shift[]
@@ -106,10 +112,20 @@ export interface user_filter extends user{
 
 export interface group{
 	id?: string
-	code: string
+	code?: string
 	name?: string
 	created_by?: number
 	created_date?: string
+	is_active?: boolean
+}
+export interface user_group{
+	id?: string
+	user_id?: string
+	group_id?: string
+	code?: string
+	name?: string
+	start_date?: string
+	end_date?: string
 	is_active?: boolean
 }
 
@@ -124,7 +140,7 @@ export interface designation{
 
 export interface department{
 	id?: string
-	code: string
+	code?: string
 	name?: string
 	created_by?: number
 	created_date?: string
@@ -138,6 +154,7 @@ export interface user_department{
 	name?: string
 	is_current?: boolean
 	start_date?: string
+	end_date?: string
 	is_active?: boolean
 }
 

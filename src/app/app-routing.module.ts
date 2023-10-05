@@ -37,6 +37,10 @@ const routes: Routes = [
     loadChildren: () => import('./hr/hr.module').then( m => m.HrPageModule),
     canActivate : [IsLoggedInGuard]
   },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then( m => m.AdminPageModule)
+  },
 ];
 
 @NgModule({

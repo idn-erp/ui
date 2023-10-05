@@ -27,7 +27,7 @@ export class ApiService {
     this.token = "";
     this.isLoggedIn = false;
     if(localStorage.getItem("token") && localStorage.getItem("user")){
-      this.user = localStorage.getItem("user");
+      this.user = JSON.parse(localStorage.getItem("user"));
       this.token = localStorage.getItem("token") as string;
       this.isLoggedIn = true;
     }
@@ -86,7 +86,7 @@ export class ApiService {
           if(res.ok){
             this.token = res.data.authToken;
             this.user = res.data.user;
-            localStorage.setItem('user', this.user);
+            localStorage.setItem('user', JSON.stringify(this.user));
             localStorage.setItem('token', this.token);
           }
           Res(res);

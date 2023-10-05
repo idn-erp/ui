@@ -30,6 +30,14 @@ const routes: Routes = [
         loadChildren: () => import('../pages/users/users.module').then( m => m.UsersPageModule )
       },
       {
+        path : 'add-user',
+        loadChildren: () => import('../pages/add-user/add-user.module').then( m => m.AddUserPageModule )
+      },
+      {
+        path: 'import-user',
+        loadChildren: () => import('../pages/import-user/import-user.module').then( m => m.ImportUserPageModule)
+      },
+      {
         path: 'user-details',
         loadChildren: () => import('../pages/user-details/user-details.module').then( m => m.UserDetailsPageModule)
       },

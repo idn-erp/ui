@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/common/api.service';
 import { page } from '../types/interfaces';
+import { PageService } from '../services/common/page.service';
 
 @Component({
   selector: 'app-pm',
@@ -10,23 +11,18 @@ import { page } from '../types/interfaces';
 export class PmPage implements OnInit {
 
   constructor(
-    private api: ApiService
+    private api: ApiService,
+    private pgs: PageService
   ) { }
 
   ln: any = this.api.ln.data;
-  menus: page[] = [
-    {
-      name : "Customers",
-      path : ['/pm', 'customers']
-    },
-    {
-      name : "Projects",
-      path : ['/pm','projects']
-    }
-  ]
-
   ngOnInit() {
-    console.log(this.ln)
+    this.load()
+  }
+
+  all: page[] = []
+  async load(){
+    this.all = await this.pgs.get('project_management')
   }
 
 }

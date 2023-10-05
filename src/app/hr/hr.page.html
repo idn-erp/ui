@@ -6,7 +6,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-content color="dark">
-      <ion-item color="dark" routerLink="/pm/my-dashboard">
+      <ion-item color="dark" routerLink="/hr/my-dashboard">
         <ion-icon name="grid-outline"></ion-icon>
         <ion-label class="ion-margin-start">
           {{ln.my_dashboard || 'My Dashboard'}}
@@ -19,6 +19,9 @@
         </ion-label>
       </ion-item>
     </ion-content>
+    <ion-footer>
+      <app-user-toolbar></app-user-toolbar>
+    </ion-footer>
   </ion-menu>
 
   <div class="ion-page" id="main">

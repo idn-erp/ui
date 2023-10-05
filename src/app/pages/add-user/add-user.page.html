@@ -1,0 +1,79 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" class="ion-margin-start">
+      <ion-back-button defaultHref="/hr/users"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ln.add_user || 'Add User'}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="../import-user">
+        {{ln.import || 'Import'}}
+        <ion-icon slot="end" name="document-text-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="4">
+        <ion-input [label]="ln.file || 'File'" labelPlacement="floating" [(ngModel)]="new_user.file" fill="solid"></ion-input>
+      </ion-col>
+      <ion-col size="12" size-sm="4">
+        <ion-input [label]="ln.username || 'Username'" labelPlacement="floating" [(ngModel)]="new_user.name" fill="solid"></ion-input>
+      </ion-col>
+      <ion-col size="12" size-sm="4">
+        <ion-input type="email" [label]="ln.email || 'Email'" labelPlacement="floating" [(ngModel)]="new_user.email" fill="solid"></ion-input>
+      </ion-col>
+      <ion-col size="12" size-sm="4">
+        <ion-select [(ngModel)]="new_user.can_login" [label]="ln.can_login || 'Can Login'" labelPlacement="floating" fill="solid">
+          <ion-select-option [value]="false">{{ln.no || 'No'}}</ion-select-option>
+          <ion-select-option [value]="true">{{ln.yes || 'Yes'}}</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col size="12" size-sm="4" *ngIf="new_user.can_login">
+        <ion-input type="text" [label]="ln.password || 'Password'" labelPlacement="floating" [(ngModel)]="new_user.password" fill="solid"></ion-input>
+      </ion-col>
+      <ion-col size="12" size-sm="4">
+        <ion-select [(ngModel)]="new_user.language" [label]="ln.login || 'Language'" labelPlacement="floating" fill="solid">
+          <ion-select-option value="ar">{{ln.arabic || 'Arabic'}}</ion-select-option>
+          <ion-select-option value="en">{{ln.english || 'English'}}</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col size="12" size-sm="4">
+        <ion-select multiple [(ngModel)]="new_user.dep_ids" [label]="ln.departments || 'Departments'" fill="solid" labelPlacement="floating">
+          <ion-select-option [value]="d.id" *ngFor="let d of departments">
+            {{d.name}}
+          </ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col size="12" size-sm="4">
+        <ion-select multiple [(ngModel)]="new_user.des_ids" [label]="ln.designation || 'Designations'" fill="solid" labelPlacement="floating">
+          <ion-select-option [value]="d.id" *ngFor="let d of designations">
+            {{d.name}}
+          </ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col size="12" size-sm="4">
+        <ion-select multiple [(ngModel)]="new_user.grp_ids" [label]="ln.groups || 'Groups'" labelPlacement="floating" fill="solid">
+          <ion-select-option [value]="g.id" *ngFor="let g of groups">
+            {{g.name}}
+          </ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col size="12" size-sm="4">
+        <ion-select multiple [(ngModel)]="new_user.shf_ids" [label]="ln.shifts || 'Shifts'" labelPlacement="floating" fill="solid">
+          <ion-select-option [value]="s.id" *ngFor="let s of shifts">
+            {{s.name}}
+          </ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col size="12">
+        <ion-button (click)="save()">
+          SAVE
+          <ion-icon name="save-outline" slot="end"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

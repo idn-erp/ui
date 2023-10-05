@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { group } from 'src/app/types/interfaces';
+import { ModalController } from '@ionic/angular';
+import { GroupSelectorComponent } from 'src/app/components/common/group-selector/group-selector.component';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,8 @@ import { group } from 'src/app/types/interfaces';
 export class GroupService {
 
   constructor(
-    private api: ApiService
+    private api: ApiService,
+    private mdc: ModalController
   ) { }
 
   all: group[] = []
@@ -19,4 +22,16 @@ export class GroupService {
     }
     return [...this.all]
   }
+
+  
+  async selector(){
+    const modal = await this.mdc.create({
+      component : GroupSelectorComponent,
+      backdropDismiss: false
+    });
+    await modal.present();
+    const {data,role} = await modal.onDidDismiss();
+    return {data,role};
+  }
+
 }
