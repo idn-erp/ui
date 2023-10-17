@@ -24,7 +24,7 @@ export class LoginPage implements OnInit {
       this.api.Toast("Invalid email or password");
     else this.api.showLoader("Authenticating...").then(
       ()=>{
-        this.api.authenticate(this.email, this.password).then(
+        this.api.authenticate(this.email+'@nasban', this.password).then(
           (res:any)=>{
             this.api.hideLoader();
             if(res.ok){
