@@ -54,12 +54,16 @@
           </option>
         </select>
       </ion-col>
-      <ion-col size="12" size-sm="6">
+      <ion-col size="12" size-sm="3">
+        <ion-toggle [(ngModel)]="in_depth" >{{ln.detailed_view || 'Detailed view'}}</ion-toggle>
+        <br>
+        <ion-button (click)="search()">
+          Search
+          <ion-icon name="search-outline" slot="end"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col size="12" size-sm="3">
         <ion-toolbar>
-          <ion-button size="small" (click)="search()" slot="start">
-            Search
-            <ion-icon name="search-outline" slot="end"></ion-icon>
-          </ion-button>
           <ion-buttons slot="end">
             <ion-button (click)="prev()" [disabled]="filter.page==1">{{ln.prev || 'Prev'}}</ion-button>
             {{filter.page}}
@@ -74,8 +78,11 @@
           <thead>
             <tr>
               <td>#</td>
-              <td>{{ln.file || "File"}}</td>
-              <td>{{ln.name || "Name"}}</td>
+              <td>{{ln.user || "User"}}</td>
+              <td *ngIf="in_depth">{{ln.email || "Email"}}</td>
+              <td *ngIf="in_depth">{{ln.departments || "Departments"}}</td>
+              <td *ngIf="in_depth">{{ln.groups || "Groups"}}</td>
+              <td *ngIf="in_depth">{{ln.shifts || "Shifts"}}</td>
               <td>{{ln.language || "Language"}}</td>
               <td>{{ln.action || "Action"}}</td>
             </tr>
@@ -83,8 +90,33 @@
           <tbody>
             <tr *ngFor="let u of all;index as idx">
               <td>{{(idx+1) + (filter.page-1) * 50}}</td>
-              <td>{{u.file}}</td>
-              <td>{{u.name}}</td>
+              <td>
+                <span>{{u.name}}</span>
+                <span>{{u.file}}</span>
+              </td>
+              <td *ngIf="in_depth">
+                <span>{{u.email}}</span>
+                <ion-icon 
+                  [attr.title]="ln.this_user_can_login || 'This user can login'" 
+                  [name]="u.can_login ? 'shield-half-outline' : 'alert-circle-outline'"
+                  [color]="u.can_login ? 'success' : 'secondary'"
+                ></ion-icon>
+              </td>
+              <td *ngIf="in_depth">
+                <ion-badge color="secondary" *ngFor="let d of u.departments">
+                  {{d.department.name}} ( {{d.designation.name}} )
+                </ion-badge>
+              </td>
+              <td *ngIf="in_depth">
+                <ion-badge color="success" *ngFor="let g of u.groups">
+                  {{g.name}}
+                </ion-badge>
+              </td>
+              <td *ngIf="in_depth">
+                <ion-badge color="light"*ngFor="let s of u.shifts">
+                  {{s.name}}
+                </ion-badge>
+              </td>
               <td>{{u.language}}</td>
               <td>
                 <ion-button size="small" fill="clear" [routerLink]="['../', 'user-details']" [queryParams]="{user_id: u.id}">

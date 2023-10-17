@@ -83,9 +83,15 @@ input:focus, select:focus {
 .dn-fs-xxsmall{font-size: xx-small !important;}
 .dn-fs-xsmall{font-size: x-small !important;}
 .dn-fs-smaller{font-size: smaller !important;}
-.dn-table{width:100%;text-align: start !important;}
+
+.dn-table{width:100%;text-align: start !important;border:1px #eee solid !important;}
 .dn-table thead tr{font-weight:bold;background-color: #f9f9f9;border-bottom: solid 2px teal;}
 .dn-table td{padding:10px 5px;}
+.dn-table td span:first-child{display:block !important; font-weight: bold !important;line-height: 1em !important;}
+.dn-table td span:last-child{font-size:small !important;line-height: 1em !important;}
+.dn-table td ion-badge{margin-inline-end: 4px !important;}
+.dn-table tbody tr{border-bottom: solid 1px #999 !important;}
+
 
 /* Background color utilities */
 .bg-primary { background-color: #007bff !important; }

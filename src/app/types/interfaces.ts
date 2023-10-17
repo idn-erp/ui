@@ -96,8 +96,7 @@ export interface user{
 	grp_ids?: string[]
 	shf_ids?: string[]
 	
-	departments?: department[]
-	designations?: designation[]
+	departments?: user_department[]
 	shifts?: shift[]
 	groups?: group[]
 }

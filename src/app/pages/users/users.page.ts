@@ -38,6 +38,12 @@ export class UsersPage implements OnInit {
     shift_id : 0,
     page : 1
   }
+
+  in_depth: boolean = false;
+  toggle_indepth(){
+    this.in_depth = !this.in_depth
+  }
+  
   groups: group[] = []
   deps: department[] = []
   desg: designation[] = []
@@ -51,7 +57,7 @@ export class UsersPage implements OnInit {
 
   all: user[] = []
   async search(){
-    this.all = await this.usr.search(this.filter)
+    this.all = await this.usr.search(this.filter, this.in_depth)
     if(this.all.length==0){
       this.api.Toast(this.ln.no_user_found || "No user found")
       this.prev()
