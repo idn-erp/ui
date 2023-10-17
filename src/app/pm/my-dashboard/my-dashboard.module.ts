@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { MyDashboardPageRoutingModule } from './my-dashboard-routing.module';
 
 import { MyDashboardPage } from './my-dashboard.page';
+import { BackButtonModule } from 'src/app/components/common/back-button/back-button.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MyDashboardPageRoutingModule
+    MyDashboardPageRoutingModule,
+    BackButtonModule
   ],
   declarations: [MyDashboardPage]
 })

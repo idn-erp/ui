@@ -39,7 +39,7 @@ export class ApiService {
     data : {}
   };
   init_ln(ln_code: string){
-    this.http.get('/assets/languages/'+ln_code+'.json').subscribe(
+    this.http.get(this.env.base_url + '/assets/languages/'+ln_code+'.json').subscribe(
       (res:any)=>{
         document.body.setAttribute('dir', res.dir || 'ltr')
         this.ln = res
@@ -53,7 +53,7 @@ export class ApiService {
         this.http.post(
           `${this.env.api_url}sp/${name}`,
           { data : data },
-          { headers : { Authorization: this.token } }
+          { headers : { X_Authorization: this.token } }
         ).subscribe(
           (res:any)=>{
             if(!res.ok && res.type=='LOGIN'){
@@ -73,7 +73,7 @@ export class ApiService {
         this.http.post(
           `${this.env.api_url}${path}`,
           fd ? data : { data : data },
-          { headers : { Authorization: this.token } }
+          { headers : { X_Authorization: this.token } }
         ).subscribe( res => Res(res) )
       }
     );

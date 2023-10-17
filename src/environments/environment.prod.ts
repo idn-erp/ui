@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  api_url : "https://project.idn.software/"
+  api_url : "/idn-api/",
+  base_url : "/applications/idn/ui"
 };

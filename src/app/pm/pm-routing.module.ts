@@ -44,6 +44,10 @@ const routes: Routes = [
       {
         path: 'add-attachment',
         loadChildren: () => import('../pages/add-attachment/add-attachment.module').then( m => m.AddAttachmentPageModule)
+      },
+      {
+        path: 'productivity',
+        loadChildren: () => import('./productivity/productivity.module').then( m => m.ProductivityPageModule)
       }
     ]
   }

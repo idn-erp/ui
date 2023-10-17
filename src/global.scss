@@ -25,6 +25,35 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
+/* Custom font */
+@font-face {
+    font-family: 'cairo-bold';
+    src: url('/assets/fonts/cairo/Cairo-Bold.ttf');
+}
+@font-face {
+    font-family: 'cairo-semibold';
+    src: url('/assets/fonts/cairo/Cairo-SemiBold.ttf');
+}
+@font-face {
+    font-family: 'cairo-extrabold';
+    src: url('/assets/fonts/cairo/Cairo-ExtraBold.ttf');
+}
+@font-face {
+    font-family: 'cairo-light';
+    src: url('/assets/fonts/cairo/Cairo-Light.ttf');
+}
+@font-face {
+    font-family: 'cairo-regular';
+    src: url('/assets/fonts/cairo/Cairo-Regular.ttf');
+}
+@font-face {
+    font-family: 'cairo-medium';
+    src: url('/assets/fonts/cairo/Cairo-Medium.ttf');
+}
+*:not(ion-icon){
+    font-family: 'cairo-regular' !important;
+}
+
 .split-pane-visible >.split-pane-side { flex-grow: 28; }
 .split-pane-visible >.split-pane-main { flex-grow: 72; }
 .split-pane-visible >.split-pane-side {
@@ -45,6 +74,8 @@ input,select {
 input:focus, select:focus {
     border-color: #007bff;
 }
+
+
 
 /** Custom CSS */
 .dn-full{width: 100%;}
@@ -97,3 +128,97 @@ input:focus, select:focus {
 .fs-large { font-size: large !important; }
 .fs-xlarge { font-size: x-large !important; }
 .fs-xxlarge { font-size: xx-large !important; }
+
+/* all side border utility classes */
+.br-top { border-top: 1px solid #dee2e6 !important; }
+.br-right { border-right: 1px solid #dee2e6 !important; }
+.br-bottom { border-bottom: 1px solid #dee2e6 !important; }
+.br-left { border-left: 1px solid #dee2e6 !important; }
+.br { border: 1px solid #dee2e6 !important; }
+.br-rounded { border-radius: 0.25rem !important; }
+
+/* Border color utilit classes */
+.br-primary { border-color: #007bff !important; }
+.br-secondary { border-color: #6c757d !important; }
+.br-success { border-color: #28a745 !important; }
+.br-info { border-color: #17a2b8 !important; }
+.br-warning { border-color: #ffc107 !important; }
+.br-danger { border-color: #dc3545 !important; }
+.br-light { border-color: #f8f9fa !important; }
+.br-dark { border-color: #343a40 !important; }
+
+/* Padding by number utility classes */
+.p-0 { padding: 0 !important; }
+.p-1 { padding: 1px !important; }
+.p-2 { padding: 2px !important; }
+.p-3 { padding: 3px !important; }
+.p-4 { padding: 4px !important; }
+.p-5 { padding: 5px !important; }
+.p-6 { padding: 6px !important; }
+.p-7 { padding: 7px !important; }
+.p-8 { padding: 8px !important; }
+.p-9 { padding: 9px !important; }
+.p-10 { padding: 10px !important; }
+.p-11 { padding: 11px !important; }
+.p-12 { padding: 12px !important; }
+.p-13 { padding: 13px !important; }
+.p-14 { padding: 14px !important; }
+.p-15 { padding: 15px !important; }
+.p-16 { padding: 16px !important; }
+.p-17 { padding: 17px !important; }
+.p-18 { padding: 18px !important; }
+.p-19 { padding: 19px !important; }
+.p-20 { padding: 20px !important; }
+
+/* Padding y axis utility classes */
+.py-0 { padding-top: 0 !important; padding-bottom: 0 !important; }
+.py-1 { padding-top: 1px !important; padding-bottom: 1px !important; }
+.py-2 { padding-top: 2px !important; padding-bottom: 2px !important; }
+.py-3 { padding-top: 3px !important; padding-bottom: 3px !important; }
+.py-4 { padding-top: 4px !important; padding-bottom: 4px !important; }
+.py-5 { padding-top: 5px !important; padding-bottom: 5px !important; }
+.py-6 { padding-top: 6px !important; padding-bottom: 6px !important; }
+.py-7 { padding-top: 7px !important; padding-bottom: 7px !important; }
+.py-8 { padding-top: 8px !important; padding-bottom: 8px !important; }
+.py-9 { padding-top: 9px !important; padding-bottom: 9px !important; }
+.py-10 { padding-top: 10px !important; padding-bottom: 10px !important; }
+.py-11 { padding-top: 11px !important; padding-bottom: 11px !important; }
+.py-12 { padding-top: 12px !important; padding-bottom: 12px !important; }
+.py-13 { padding-top: 13px !important; padding-bottom: 13px !important; }
+.py-14 { padding-top: 14px !important; padding-bottom: 14px !important; }
+.py-15 { padding-top: 15px !important; padding-bottom: 15px !important; }
+.py-16 { padding-top: 16px !important; padding-bottom: 16px !important; }
+.py-17 { padding-top: 17px !important; padding-bottom: 17px !important; }
+.py-18 { padding-top: 18px !important; padding-bottom: 18px !important; }
+.py-19 { padding-top: 19px !important; padding-bottom: 19px !important; }
+.py-20 { padding-top: 20px !important; padding-bottom: 20px !important; }
+
+/* Padding x axis utility classes */
+.px-0 { padding-left: 0 !important; padding-right: 0 !important; }
+.px-1 { padding-left: 1px !important; padding-right: 1px !important; }
+.px-2 { padding-left: 2px !important; padding-right: 2px !important; }
+.px-3 { padding-left: 3px !important; padding-right: 3px !important; }
+.px-4 { padding-left: 4px !important; padding-right: 4px !important; }
+.px-5 { padding-left: 5px !important; padding-right: 5px !important; }
+.px-6 { padding-left: 6px !important; padding-right: 6px !important; }
+.px-7 { padding-left: 7px !important; padding-right: 7px !important; }
+.px-8 { padding-left: 8px !important; padding-right: 8px !important; }
+.px-9 { padding-left: 9px !important; padding-right: 9px !important; }
+.px-10 { padding-left: 10px !important; padding-right: 10px !important; }
+.px-11 { padding-left: 11px !important; padding-right: 11px !important; }
+.px-12 { padding-left: 12px !important; padding-right: 12px !important; }
+.px-13 { padding-left: 13px !important; padding-right: 13px !important; }
+.px-14 { padding-left: 14px !important; padding-right: 14px !important; }
+.px-15 { padding-left: 15px !important; padding-right: 15px !important; }
+.px-16 { padding-left: 16px !important; padding-right: 16px !important; }
+.px-17 { padding-left: 17px !important; padding-right: 17px !important; }
+.px-18 { padding-left: 18px !important; padding-right: 18px !important; }
+.px-19 { padding-left: 19px !important; padding-right: 19px !important; }
+.px-20 { padding-left: 20px !important; padding-right: 20px !important; }
+
+
+
+
+body[dir="rtl"] ion-icon{
+    transform: scaleX(-1) !important;
+}

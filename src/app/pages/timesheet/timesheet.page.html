@@ -4,11 +4,6 @@
       <app-back-button></app-back-button>
     </ion-buttons>
     <ion-title>{{ln.timesheet || "Timesheet"}}</ion-title>
-    <ion-buttons slot="end" class="ion-margin-end" routerLink="../add-timesheet">
-      <ion-button>
-        <ion-icon name="add-circle-outline" slot="icon-only"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -18,7 +13,7 @@
       <ion-col size="6" size-sm="4" size-md="3">
         {{ln.department || 'Department'}}
         <select [(ngModel)]="filter.department_id">
-          <option [value]="0">All</option>
+          <option [value]="0">{{ln.all || 'All'}}</option>
           <option *ngFor="let d of deps" [value]="d.id">{{d.name}}</option>
         </select>
       </ion-col>
@@ -33,7 +28,7 @@
       <ion-col size="6" size-sm="4" size-md="3">
         {{ln.shift || 'Shift'}}
         <select [(ngModel)]="filter.shift_id">
-          <option [value]="0">All</option>
+          <option [value]="0">{{ln.all || 'All'}}</option>
           <option *ngFor="let s of shifts" [value]="s.id">{{s.name}}</option>
         </select>
       </ion-col>
@@ -98,7 +93,7 @@
         <ion-toolbar>
           <ion-button (click)="search()">
             {{ln.search || 'Search'}}
-            <ion-icon name="search-outline"></ion-icon>
+            <ion-icon slot="end" name="search-outline"></ion-icon>
           </ion-button>
         </ion-toolbar>
       </ion-col>
@@ -108,13 +103,13 @@
         <thead>
           <tr>
             <td>#</td>
-            <td>File</td>
-            <td>Name</td>
-            <td>In Time</td>
-            <td>Is In Delayed</td>
-            <td>Out Time</td>
-            <td>Is Out Early</td>
-            <td>Is Absent</td>
+            <td>{{ln.file || 'File'}}</td>
+            <td>{{ln.name || 'Name'}}</td>
+            <td>{{ln.in_time || 'In Time'}}</td>
+            <td>{{ln.is_in_delayed || 'Is In Delayed'}}</td>
+            <td>{{ln.out_time || 'Out Time'}}</td>
+            <td>{{ln.is_out_early || 'Is Out Early'}}</td>
+            <td>{{ln.is_absent || 'Is Absent'}}</td>
           </tr>
         </thead>
         <tbody>

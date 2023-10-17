@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'dash',
     pathMatch: 'full'
   },
   {
@@ -20,7 +20,8 @@ const routes: Routes = [
   },
   {
     path: 'dash',
-    loadChildren: () => import('./dash/dash.module').then( m => m.DashPageModule)
+    loadChildren: () => import('./dash/dash.module').then( m => m.DashPageModule),
+    canActivate : [IsLoggedInGuard]
   },
   {
     path: 'pm',
@@ -45,7 +46,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, useHash: true })
   ],
   exports: [RouterModule]
 })

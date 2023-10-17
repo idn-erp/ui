@@ -131,10 +131,21 @@ export interface user_group{
 
 export interface designation{
 	id?: string
-	code: string
+	code?: string
 	name?: string
 	created_by?: number
 	created_date?: string
+	is_active?: boolean
+}
+export interface user_designation{
+	id?: string
+	user_id?: string
+	designation_id?: string
+	code?: string
+	name?: string
+	start_date?: string
+	end_date?: string
+	is_current?: boolean
 	is_active?: boolean
 }
 
@@ -150,8 +161,8 @@ export interface user_department{
 	id?: string
 	user_id?: string
 	department_id?: string
-	code?: string
-	name?: string
+	department?: department
+	designation?: designation
 	is_current?: boolean
 	start_date?: string
 	end_date?: string

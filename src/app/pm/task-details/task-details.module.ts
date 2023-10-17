@@ -12,6 +12,7 @@ import { TaskSubtasksModule } from 'src/app/components/pm/task-subtasks/task-sub
 import { AssigneeModule } from 'src/app/components/common/assignee/assignee.module';
 import { XlsReaderModule } from 'src/app/components/hr/xls-reader/xls-reader.module';
 import { AttachmentModule } from 'src/app/components/common/attachment/attachment.module';
+import { BackButtonModule } from 'src/app/components/common/back-button/back-button.module';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { AttachmentModule } from 'src/app/components/common/attachment/attachmen
     TaskBasicModule,
     TaskSubtasksModule,
     AssigneeModule,
-    AttachmentModule
+    AttachmentModule,
+    BackButtonModule
   ],
   declarations: [TaskDetailsPage]
 })

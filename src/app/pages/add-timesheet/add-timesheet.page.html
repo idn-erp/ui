@@ -21,7 +21,7 @@
           <ion-icon name="calendar-outline" class="ion-margin-start"></ion-icon>
           <ion-select [(ngModel)]="selected_shift_code" class="ion-margin-start">
             <ion-select-option *ngFor="let s of shifts" [value]="s.code">
-              {{s.name}}
+              {{ln[s.code] || s.name}}
             </ion-select-option>
           </ion-select>
         </ion-item>
@@ -47,14 +47,14 @@
           <thead>
             <tr>
               <td>#</td>
-              <td>File</td>
-              <td>Name</td>
-              <td>Shift</td>
-              <td>In Time</td>
-              <td>Is In Delayed</td>
-              <td>Out Time</td>
-              <td>Is Out Early</td>
-              <td>Is Absent</td>
+              <td>{{ln.file || 'File'}}</td>
+              <td>{{ln.name || 'Name'}}</td>
+              <td>{{ln.shift || 'Shift'}}</td>
+              <td>{{ln.in_time || 'In Time'}}</td>
+              <td>{{ln.is_in_delayed || 'Is In Delayed'}}</td>
+              <td>{{ln.out_time || 'Out Time'}}</td>
+              <td>{{ln.is_out_early || 'Is Out Early'}}</td>
+              <td>{{ln.is_absent || 'Is Absent'}}</td>
             </tr>
           </thead>
           <tbody>

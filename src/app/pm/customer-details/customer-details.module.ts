@@ -10,6 +10,7 @@ import { CustomerDetailsPage } from './customer-details.page';
 import { CustomerBasicModule } from 'src/app/components/pm/customer-basic/customer-basic.module';
 import { CustomerProjectsModule } from 'src/app/components/pm/customer-projects/customer-projects.module';
 import { ContactModule } from 'src/app/components/common/contact/contact.module';
+import { BackButtonModule } from 'src/app/components/common/back-button/back-button.module';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { ContactModule } from 'src/app/components/common/contact/contact.module'
     CustomerDetailsPageRoutingModule,
     CustomerBasicModule,
     CustomerProjectsModule,
-    ContactModule
+    ContactModule,
+    BackButtonModule
   ],
   declarations: [CustomerDetailsPage]
 })

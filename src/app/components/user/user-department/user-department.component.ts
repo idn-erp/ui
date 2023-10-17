@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/common/api.service';
 import { DepartmentService } from 'src/app/services/common/department.service';
+import { DesignationService } from 'src/app/services/common/designation.service';
 import { UserService } from 'src/app/services/common/user.service';
 import { department, user_department } from 'src/app/types/interfaces';
 
@@ -16,7 +17,8 @@ export class UserDepartmentComponent  implements OnInit {
     private api: ApiService,
     private usr: UserService,
     private acr: ActivatedRoute,
-    private dps: DepartmentService
+    private dps: DepartmentService,
+    private des: DesignationService
   ) { }
 
   ln: any = this.api.ln.data
@@ -39,20 +41,23 @@ export class UserDepartmentComponent  implements OnInit {
 
 
   async add_init(){
-    const {data,role} = await this.dps.selector()
+    let {data,role} = await this.dps.selector()
     if(role=='selected'){
-      let exists = this.all.filter((x:department)=>x.id==data.id).length>0
+      let exists = this.all.filter((x:user_department)=>x.department_id==data.id).length>0
       if(exists){
         this.api.Toast(this.ln.department_already_exist || "Department already exist")
       }else{
-        await this.api.showLoader(this.ln.saving || "Saving")
-        const res: any = await this.usr.add_department( this.user_id, data.id )
-        this.api.hideLoader()
-        if(res.ok){
-          this.api.Toast(this.ln.department_added || "Department added")
-          this.all = res.data;
-        }else{
-          this.api.Toast(this.ln.error_adding_department || "Error adding department")
+        let des = await this.des.selector()
+        if(des.role=='selected'){
+          await this.api.showLoader(this.ln.saving || "Saving")
+          const res: any = await this.usr.add_department( this.user_id, data.id, des.data.id )
+          this.api.hideLoader()
+          if(res.ok){
+            this.api.Toast(this.ln.department_added || "Department added")
+            this.all = res.data;
+          }else{
+            this.api.Toast(this.ln.error_adding_department || "Error adding department")
+          }
         }
       }
     }

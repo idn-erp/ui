@@ -1,5 +1,6 @@
 <ion-item color="light" lines="none">
-  <ion-label>
+  <ion-icon name="grid"></ion-icon>
+  <ion-label class="ion-margin-start">
     {{ln.departments || "Departments"}}
   </ion-label>
   <ion-button (click)="add_init()" fill="clear" size="small">{{ln.add || 'Add'}}</ion-button>
@@ -10,7 +11,7 @@
 </ion-item>
 <ion-item *ngFor="let d of all" lines="none">
   <ion-label class="fs-small">
-    <b>{{ln[d.code] || d.name}}</b>
+    <b>{{ln[d.department.code] || d.department.name}}</b> ( {{ln[d.designation.code] || d.designation.name}} )
     <br>
     <small>{{ln.since || 'Since'}}: {{d.start_date | date}}</small>
   </ion-label>

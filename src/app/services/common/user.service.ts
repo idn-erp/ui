@@ -43,8 +43,8 @@ export class UserService {
     const res: any = await this.api.sp('user/get_departments', [uid])
     return res.ok ? res.data : []
   }
-  async add_department( uid: string, dep_id: string ){
-    const res: any = await this.api.sp("user/add_department", [uid, dep_id])
+  async add_department( uid: string, dep_id: string, des_id: string ){
+    const res: any = await this.api.sp("user/add_department", [uid, dep_id, des_id])
     return res;
   }
   async exit_department( uid: string, user_dep_id: string ){

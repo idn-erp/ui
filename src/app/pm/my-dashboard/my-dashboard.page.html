@@ -1,9 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
     <ion-buttons slot="start" class="ion-margin-start">
-      <ion-back-button defaultHref="/dash"></ion-back-button>
+      <app-back-button></app-back-button>
     </ion-buttons>
-    <ion-title>Overview</ion-title>
+    <ion-title>{{ln.my_dashboard || 'My Dashboard'}}</ion-title>
   </ion-toolbar>
 </ion-header>
 

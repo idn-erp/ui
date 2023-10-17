@@ -1,0 +1,63 @@
+{
+    "dir" : "rtl",
+    "data" : {
+        "my_dashboard" : "لوحة القيادة الخاصة بي",
+        "admin_dashboard" : "لوحة تحكم المشرف",
+
+        "project_management" : "ادارة مشروع",
+        "customers" : "عملاء",
+        "projects" : "المشاريع",
+        "productivity" : "إنتاجية",
+
+        "human_resource" : "الموارد البشرية",
+
+        "users" : "المستخدمين",
+        "add_user" : "إضافة مستخدم",
+        "work_shift" : "نوبات العمل",
+        "timesheet" : "ورقة التوقيت",
+        "add_timesheet" : "إضافة الجدول الزمني",
+
+        "department" : "قسم",
+        "file_number" : "رقم الملف",
+        "name" : "اسم",
+        "shift" : "يحول",
+        "delayed_checkin" : "تأخر تسجيل الوصول",
+        "early_checkout" : "الخروج المبكر",
+        "absent" : "غائب",
+        "sort_by" : "ترتيب حسب",
+        "select_date" : "حدد تاريخ",
+        "search" : "يبحث",
+        "specific" : "محدد",
+        "range" : "يتراوح",
+        "file" : "ملف",
+        "in_time" : "وقت دخول",
+        "is_in_delayed" : "هو تأخير الدخول",
+        "out_time" : "وقت الخروج",
+        "is_out_early" : "هو الخروج مبكرا",
+        "is_absent" : "غائب",
+        "no_data_found" : "لاتوجد بيانات",
+        "all" : "الجميع",
+        "user_not_found" : "لم يتم العثور على المستخدم",
+
+        "date" : "تاريخ",
+        "a_workshop" : "التحول أ - ورشة عمل",
+        "a_labor" : "التحول أ - العمل",
+        "b_all" : "التحول ب - جميع العمال",
+        "c_all" : "التحول ج - جميع العمال",
+        "save" : "يحفظ",
+        "reset" : "إعادة ضبط",
+
+        "username" : "اسم المستخدم",
+        "email" : "بريد إلكتروني",
+        "can_login" : "السماح بتسجيل الدخول؟",
+        "yes" : "نعم",
+        "no" : "لا",
+        "language" : "لغة",
+        "english" : "إنجليزي",
+        "arabic" : "عربي",
+        "departments" : "الأقسام",
+        "designations" : "التسميات",
+        "groups" : "مجموعات",
+        "shifts" : "التحولات"
+    }
+}

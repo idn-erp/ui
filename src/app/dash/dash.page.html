@@ -11,7 +11,7 @@
         <ion-item [routerLink]="m.path" fill="outline" lines="none">
           <ion-icon [name]="m.icon"></ion-icon>
           <ion-label class="ion-margin-start">
-            <h4>{{m.name}}</h4>
+            <h4>{{ln[m.key] || m.name}}</h4>
           </ion-label>
         </ion-item>
       </ion-col>
