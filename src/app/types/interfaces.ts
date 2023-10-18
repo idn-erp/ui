@@ -276,3 +276,17 @@ export interface shift {
 	created_by?: number;
 	is_active?: number;
 }
+export interface user_shift{
+	id?: number
+	user_id?: number
+	shift_id?: number
+	code?: string
+	name?: string
+	start_date?: string
+	end_date?: string
+	created_by?: number
+	created_at?: string
+	is_primary?: boolean
+	is_active?: boolean
+}
+

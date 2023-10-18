@@ -1,35 +1,37 @@
-<ion-item lines="none" color="light">
-  <ion-icon name="information-circle"></ion-icon>
-  <ion-label class="ion-margin-start">
-    {{ln.user_info || "User Info"}}
-  </ion-label>
-  <ion-button fill="clear" color="secondary" size="small">{{ln.edit || 'edit'}}</ion-button>
-</ion-item>
-<ion-item lines="none">
-  <ion-icon name="information-circle-outline"></ion-icon>
-  <ion-label class="ion-margin-start">
-    <p>{{ln.name || "Name"}}</p>
-    <h2>{{user.name}}</h2>
-  </ion-label>
-</ion-item>
-<ion-item lines="none">
-  <ion-icon name="barcode-outline"></ion-icon>
-  <ion-label class="ion-margin-start">
-    <p>{{ln.file || "File"}}</p>
-    <h2>{{user.file}}</h2>
-  </ion-label>
-</ion-item>
-<ion-item lines="none">
-  <ion-icon name="mail-outline"></ion-icon>
-  <ion-label class="ion-margin-start">
-    <p>{{ln.email || "Email"}}</p>
-    <h2>{{user.email}}</h2>
-  </ion-label>
-</ion-item>
-<ion-item lines="none">
-  <ion-icon name="language-outline"></ion-icon>
-  <ion-label class="ion-margin-start">
-    <p>{{ln.language || "Language"}}</p>
-    <h2>{{user.language}}</h2>
-  </ion-label>
-</ion-item>
+<div class="br mb-10">
+  <ion-item>
+    <ion-icon name="information-circle"></ion-icon>
+    <ion-label class="ion-margin-start">
+      {{ln.user_info || "User Info"}}
+    </ion-label>
+    <ion-button fill="clear" color="secondary" size="small">{{ln.edit || 'edit'}}</ion-button>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-icon name="information-circle-outline"></ion-icon>
+    <ion-label class="ion-margin-start">
+      <p>{{ln.name || "Name"}}</p>
+      <h2>{{user.name}}</h2>
+    </ion-label>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-icon name="barcode-outline"></ion-icon>
+    <ion-label class="ion-margin-start">
+      <p>{{ln.file || "File"}}</p>
+      <h2>{{user.file}}</h2>
+    </ion-label>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-icon name="mail-outline"></ion-icon>
+    <ion-label class="ion-margin-start">
+      <p>{{ln.email || "Email"}}</p>
+      <h2>{{user.email}}</h2>
+    </ion-label>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-icon name="language-outline"></ion-icon>
+    <ion-label class="ion-margin-start">
+      <p>{{ln.language || "Language"}}</p>
+      <h2>{{user.language}}</h2>
+    </ion-label>
+  </ion-item>
+</div>

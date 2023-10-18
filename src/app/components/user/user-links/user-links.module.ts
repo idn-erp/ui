@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { DepartmentSelectorModule } from '../../common/department-selector/department-selector.module';
 import { GroupSelectorModule } from '../../common/group-selector/group-selector.module';
 import { DesignationSelectorModule } from '../../common/designation-selector/designation-selector.module';
+import { WorkShiftSelectorModule } from '../../common/work-shift-selector/work-shift-selector.module';
 
 
 
@@ -25,7 +26,8 @@ import { DesignationSelectorModule } from '../../common/designation-selector/des
     FormsModule,
     DepartmentSelectorModule,
     DesignationSelectorModule,
-    GroupSelectorModule
+    GroupSelectorModule,
+    WorkShiftSelectorModule
   ],
   exports : [
     UserDepartmentComponent,

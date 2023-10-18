@@ -8,6 +8,7 @@ import { MyDashboardPageRoutingModule } from './my-dashboard-routing.module';
 
 import { MyDashboardPage } from './my-dashboard.page';
 import { BackButtonModule } from 'src/app/components/common/back-button/back-button.module';
+import { DailyAttendanceChartModule } from 'src/app/components/hr/daily-attendance-chart/daily-attendance-chart.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { BackButtonModule } from 'src/app/components/common/back-button/back-but
     FormsModule,
     IonicModule,
     MyDashboardPageRoutingModule,
-    BackButtonModule
+    BackButtonModule,
+    DailyAttendanceChartModule
   ],
   declarations: [MyDashboardPage]
 })

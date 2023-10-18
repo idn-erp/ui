@@ -1,35 +1,37 @@
-<ion-item lines="none" color="light">
-  <ion-icon name="document-attach"></ion-icon>
-  <ion-label class="ion-margin-start">
-    {{ln.attachments || 'Attachments'}}
-  </ion-label>
-  <ion-button size="small" fill="clear" (click)="add_init()" color="secondary">
-    {{ln.add || 'Add'}}
-  </ion-button>
-</ion-item>
-<ion-item lines="none" *ngIf="all.length==0">
-  <ion-icon color="success" name="alert-circle-outline"></ion-icon>
-  <ion-label color="success" class="ion-margin-start">
-    {{ln.no_attachments_found || "No attachments found"}}
-  </ion-label>
-</ion-item>
-<div style="overflow: auto;max-height:300px;">
-  <ion-item *ngFor="let a of all;index as idx" lines="none">
-    <ion-icon *ngIf="(a.file_type || '').startsWith('image/')" name="image-outline"></ion-icon>
-    <ion-icon *ngIf="!(a.file_type || '').startsWith('image/')" name="document-attach-outline"></ion-icon>
-    <ion-label class="dn-fs-xsmall ion-margin-start">
-      <b class="dn-fs-small">{{a.name}}</b>
-      <br>
-      {{a.user.name}} | {{a.created_at | date}}
+<div class="br mb-10">
+  <ion-item>
+    <ion-icon name="document-attach"></ion-icon>
+    <ion-label class="ion-margin-start">
+      {{ln.attachments || 'Attachments'}}
     </ion-label>
-    <ion-badge color="light" (click)="view_init(idx)">
-      <ion-icon color="secondary" class="dn-fs-xsmall" name="eye-outline"></ion-icon>
-    </ion-badge>
-    &nbsp;
-    <ion-badge color="light" (click)="remove(a)">
-      <ion-icon color="danger" class="dn-fs-xsmall" name="trash-outline"></ion-icon>
-    </ion-badge>
+    <ion-button size="small" fill="clear" (click)="add_init()" color="secondary">
+      {{ln.add || 'Add'}}
+    </ion-button>
   </ion-item>
+  <ion-item lines="none" *ngIf="all.length==0">
+    <ion-icon color="success" name="alert-circle-outline"></ion-icon>
+    <ion-label color="success" class="ion-margin-start">
+      {{ln.no_attachments_found || "No attachments found"}}
+    </ion-label>
+  </ion-item>
+  <div style="overflow: auto;max-height:300px;">
+    <ion-item *ngFor="let a of all;index as idx" lines="none">
+      <ion-icon *ngIf="(a.file_type || '').startsWith('image/')" name="image-outline"></ion-icon>
+      <ion-icon *ngIf="!(a.file_type || '').startsWith('image/')" name="document-attach-outline"></ion-icon>
+      <ion-label class="dn-fs-xsmall ion-margin-start">
+        <b class="dn-fs-small">{{a.name}}</b>
+        <br>
+        {{a.user.name}} | {{a.created_at | date}}
+      </ion-label>
+      <ion-badge color="light" (click)="view_init(idx)">
+        <ion-icon color="secondary" class="dn-fs-xsmall" name="eye-outline"></ion-icon>
+      </ion-badge>
+      &nbsp;
+      <ion-badge color="light" (click)="remove(a)">
+        <ion-icon color="danger" class="dn-fs-xsmall" name="trash-outline"></ion-icon>
+      </ion-badge>
+    </ion-item>
+  </div>
 </div>
 
 <ion-modal [isOpen]='is_add_open' (didDismiss)='is_add_open=false'>

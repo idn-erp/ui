@@ -1,3 +1,23 @@
-<p>
-  user-shift works!
-</p>
+<div class="br p-2">
+  <ion-item >
+    <ion-icon name="shield-half-outline"></ion-icon>
+    <ion-label class="ion-margin-start">
+      {{ln.work_shifts || "Work Shifts"}}
+    </ion-label>
+    <ion-button (click)="add_init()" fill="clear" size="small">{{ln.add || 'Add'}}</ion-button>
+  </ion-item>
+  <ion-item lines="none" *ngIf="all.length==0">
+    <ion-icon name="alert-circle-outline"></ion-icon>
+    <ion-label class="ion-margin-start" color="success">{{ln.no_work_shift_alloted || "No Work Shift alloted"}}</ion-label>
+  </ion-item>
+  <ion-item *ngFor="let s of all" lines="none">
+    <ion-label class="fs-small">
+      <b>{{ln[s.code] || s.name}}</b>
+      <br>
+      <small>{{ln.since || 'Since'}}: {{s.start_date | date}}</small>
+    </ion-label>
+    <ion-badge color="light" (click)="remove(s)">
+      <ion-icon name="trash-outline" class="fs-small" color="danger"></ion-icon>
+    </ion-badge>
+  </ion-item>
+</div>

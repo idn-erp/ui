@@ -23,6 +23,11 @@ export class DepartmentService {
     return [...this.all];
   }
 
+  async get_allowed(){
+    const res: any = await this.api.sp('department/get_allowed', [])
+    return res.ok ? res.data : [];
+  }
+
 
   async selector(){
     const modal = await this.mdc.create({

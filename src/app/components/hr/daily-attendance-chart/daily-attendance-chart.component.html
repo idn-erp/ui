@@ -1,3 +1,11 @@
-<p>
-  daily-attendance-chart works!
-</p>
+<div class="ion-padding">
+  <ion-item lines="none">
+    <ion-title class="fs-small">Daily Attendance</ion-title>
+    <input [(ngModel)]="selected_date" class="fs-xsmall p-2" type="date">
+    &nbsp;
+    <select class="fs-xsmall p-2" [(ngModel)]="selected_dep">
+      <option *ngFor="let d of deps" [value]="d.id">{{ln[d.code] || d.name}}</option>
+    </select>
+  </ion-item>
+  <canvas #barCanvas style="position:relative;width:100%"></canvas>
+</div>

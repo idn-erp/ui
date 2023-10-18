@@ -1,21 +1,23 @@
-<ion-item color="light" lines="none">
-  <ion-icon name="shield-half-outline"></ion-icon>
-  <ion-label class="ion-margin-start">
-    {{ln.groups || "Groups"}}
-  </ion-label>
-  <ion-button (click)="add_init()" fill="clear" size="small">{{ln.add || 'Add'}}</ion-button>
-</ion-item>
-<ion-item lines="none" *ngIf="all.length==0">
-  <ion-icon name="alert-circle-outline"></ion-icon>
-  <ion-label class="ion-margin-start" color="success">{{ln.no_groups_allowed || "No Groups allowed"}}</ion-label>
-</ion-item>
-<ion-item *ngFor="let g of all" lines="none">
-  <ion-label class="fs-small">
-    <b>{{ln[g.code] || g.name}}</b>
-    <br>
-    <small>{{ln.since || 'Since'}}: {{g.start_date | date}}</small>
-  </ion-label>
-  <ion-badge color="light" (click)="remove(g)">
-    <ion-icon name="trash-outline" class="fs-small" color="danger"></ion-icon>
-  </ion-badge>
-</ion-item>
+<div class="br mb-10">
+  <ion-item>
+    <ion-icon name="shield-half-outline"></ion-icon>
+    <ion-label class="ion-margin-start">
+      {{ln.groups || "Groups"}}
+    </ion-label>
+    <ion-button (click)="add_init()" fill="clear" size="small">{{ln.add || 'Add'}}</ion-button>
+  </ion-item>
+  <ion-item lines="none" *ngIf="all.length==0">
+    <ion-icon name="alert-circle-outline"></ion-icon>
+    <ion-label class="ion-margin-start" color="success">{{ln.no_groups_allowed || "No Groups allowed"}}</ion-label>
+  </ion-item>
+  <ion-item *ngFor="let g of all" lines="none">
+    <ion-label class="fs-small">
+      <b>{{ln[g.code] || g.name}}</b>
+      <br>
+      <small>{{ln.since || 'Since'}}: {{g.start_date | date}}</small>
+    </ion-label>
+    <ion-badge color="light" (click)="remove(g)">
+      <ion-icon name="trash-outline" class="fs-small" color="danger"></ion-icon>
+    </ion-badge>
+  </ion-item>
+</div>
