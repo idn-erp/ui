@@ -259,24 +259,26 @@ export interface timesheet_filter{
   
 
 export interface shift {
-	id?: number;
-	code?: string;
-	name?: string;
-	info?: string | null;
-	pos?: number;
-	in_start?: any;
-	in_delay?: any;
-	in_end?: any; 
-	out_start?: any; 
-	out_early?: any; 
-	out_end?: any; 
-	start_date?: string;
-	end_date?: string | null;
-	created_date?: string;
-	created_by?: number;
-	is_active?: number;
+	id?: number
+	code?: string
+	name?: string
+	info?: string | null
+	pos?: number
+	in_time?: any
+	in_start?: any
+	in_delay?: any
+	in_end?: any
+	out_time?: any
+	out_start?: any
+	out_early?: any
+	out_end?: any
+	start_date?: string
+	end_date?: string | null
+	created_date?: string
+	created_by?: number
+	is_active?: number
 }
-export interface user_shift{
+export interface user_shift extends shift{
 	id?: number
 	user_id?: number
 	shift_id?: number
@@ -287,6 +289,5 @@ export interface user_shift{
 	created_by?: number
 	created_at?: string
 	is_primary?: boolean
-	is_active?: boolean
 }
 

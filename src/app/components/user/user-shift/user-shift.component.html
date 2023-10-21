@@ -12,6 +12,7 @@
   </ion-item>
   <ion-item *ngFor="let s of all" lines="none">
     <ion-label class="fs-small">
+      <app-work-shift-item [item]="s"></app-work-shift-item>
       <b>{{ln[s.code] || s.name}}</b>
       <br>
       <small>{{ln.since || 'Since'}}: {{s.start_date | date}}</small>

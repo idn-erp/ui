@@ -10,6 +10,7 @@ import { DepartmentSelectorModule } from '../../common/department-selector/depar
 import { GroupSelectorModule } from '../../common/group-selector/group-selector.module';
 import { DesignationSelectorModule } from '../../common/designation-selector/designation-selector.module';
 import { WorkShiftSelectorModule } from '../../common/work-shift-selector/work-shift-selector.module';
+import { WorkShiftItemModule } from '../../common/work-shift-item/work-shift-item.module';
 
 
 
@@ -27,7 +28,8 @@ import { WorkShiftSelectorModule } from '../../common/work-shift-selector/work-s
     DepartmentSelectorModule,
     DesignationSelectorModule,
     GroupSelectorModule,
-    WorkShiftSelectorModule
+    WorkShiftSelectorModule,
+    WorkShiftItemModule
   ],
   exports : [
     UserDepartmentComponent,
