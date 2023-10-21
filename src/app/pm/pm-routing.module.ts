@@ -19,31 +19,23 @@ const routes: Routes = [
       },
       {
         path: 'customers',
-        loadChildren: () => import('./customers/customers.module').then( m => m.CustomersPageModule)
+        loadChildren: () => import('./customer/customers/customers.module').then( m => m.CustomersPageModule)
       },
       {
         path: 'projects',
-        loadChildren: () => import('./projects/projects.module').then( m => m.ProjectsPageModule)
+        loadChildren: () => import('./project/projects/projects.module').then( m => m.ProjectsPageModule)
       },
       {
         path: 'customer-details',
-        loadChildren: () => import('./customer-details/customer-details.module').then( m => m.CustomerDetailsPageModule)
+        loadChildren: () => import('./customer/customer-details/customer-details.module').then( m => m.CustomerDetailsPageModule)
       },
       {
         path: 'project-details',
-        loadChildren: () => import('./project-details/project-details.module').then( m => m.ProjectDetailsPageModule)
+        loadChildren: () => import('./project/project-details/project-details.module').then( m => m.ProjectDetailsPageModule)
       },
       {
         path: 'task-details',
-        loadChildren: () => import('./task-details/task-details.module').then( m => m.TaskDetailsPageModule)
-      },
-      {
-        path: 'attachment',
-        loadChildren: () => import('../pages/attachment/attachment.module').then( m => m.AttachmentPageModule)
-      },
-      {
-        path: 'add-attachment',
-        loadChildren: () => import('../pages/add-attachment/add-attachment.module').then( m => m.AddAttachmentPageModule)
+        loadChildren: () => import('./project/task-details/task-details.module').then( m => m.TaskDetailsPageModule)
       },
       {
         path: 'productivity',

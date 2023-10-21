@@ -9,93 +9,94 @@
 
 <ion-content [fullscreen]="true">
   <ion-grid>
-    <ion-row class="fs-small">
-      <ion-col size="6" size-sm="4" size-md="3">
+    <ion-row class="fs-xsmall">
+      <ion-col size="6" size-sm="3" size-md="2">
         {{ln.department || 'Department'}}
-        <select [(ngModel)]="filter.department_id">
+        <select [(ngModel)]="filter.department_id" class="p-2">
           <option [value]="0">{{ln.all || 'All'}}</option>
           <option *ngFor="let d of deps" [value]="d.id">{{d.name}}</option>
         </select>
       </ion-col>
-      <ion-col size="6" size-sm="4" size-md="3">
+      <ion-col size="6" size-sm="3" size-md="2">
         {{ln.file_number || 'File number'}}
-        <input [(ngModel)]="filter.file" type="text" placeholder="all">
+        <input [(ngModel)]="filter.file" type="text" placeholder="all" class="p-2">
       </ion-col>
-      <ion-col size="6" size-sm="4" size-md="3">
+      <ion-col size="6" size-sm="3" size-md="2">
         {{ln.employee_name || 'Name'}}
-        <input [(ngModel)]="filter.name" type="text" placeholder="all">
+        <input [(ngModel)]="filter.name" type="text" placeholder="all" class="p-2">
       </ion-col>
-      <ion-col size="6" size-sm="4" size-md="3">
+      <ion-col size="6" size-sm="3" size-md="2">
         {{ln.shift || 'Shift'}}
-        <select [(ngModel)]="filter.shift_id">
+        <select [(ngModel)]="filter.shift_id" class="p-2">
           <option [value]="0">{{ln.all || 'All'}}</option>
           <option *ngFor="let s of shifts" [value]="s.id">{{s.name}}</option>
         </select>
       </ion-col>
-      <ion-col size="6" size-sm="4" size-md="3">
+      <ion-col size="6" size-sm="3" size-md="2">
         {{ln.delayed_checkin || 'Delayed Checkin'}}
-        <select [(ngModel)]="filter.is_in_delay">
+        <select [(ngModel)]="filter.is_in_delay" class="p-2">
           <option value="all">{{ln.all || 'All'}}</option>
           <option value="yes">{{ln.yes || 'Yes'}}</option>
           <option value="no">{{ln.no || 'No'}}</option>
           <option value="none">{{ln.none || 'None'}}</option>
         </select>
       </ion-col>
-      <ion-col size="6" size-sm="4" size-md="3">
+      <ion-col size="6" size-sm="3" size-md="2">
         {{ln.early_checkout || 'Early Checkout'}}
-        <select [(ngModel)]="filter.is_out_early">
+        <select [(ngModel)]="filter.is_out_early" class="p-2">
           <option value="all">{{ln.all || 'All'}}</option>
           <option value="yes">{{ln.yes || 'Yes'}}</option>
           <option value="no">{{ln.no || 'No'}}</option>
           <option value="none">{{ln.none || 'None'}}</option>
         </select>
       </ion-col>
-      <ion-col size="6" size-sm="4" size-md="3">
+      <ion-col size="6" size-sm="3" size-md="2">
         {{ln.absent || 'Absent'}}
-        <select [(ngModel)]="filter.is_absent">
+        <select [(ngModel)]="filter.is_absent" class="p-2">
           <option value="all">{{ln.all || 'All'}}</option>
           <option value="yes">{{ln.yes || 'Yes'}}</option>
           <option value="no">{{ln.no || 'No'}}</option>
           <option value="none">{{ln.none || 'None'}}</option>
         </select>
       </ion-col>
-      <ion-col size="6" size-sm="4" size-md="3">
+      <ion-col size="6" size-sm="3" size-md="2">
         {{ln.sort_by || 'Sort By'}}
-        <select [(ngModel)]="filter.sort_by">
+        <select [(ngModel)]="filter.sort_by" class="p-2">
           <option value="name">{{ln.name || 'Name'}}</option>
           <option value="file">{{ln.file || 'File'}}</option>
           <option value="pos">{{ln.position || 'Position'}}</option>
         </select>
       </ion-col>
-      <ion-col size="6" size-sm="4" size-md="3">
+      <ion-col size="6" size-sm="3" size-md="2">
         <div *ngIf="filter.type=='range'">
           {{ln.from || 'From'}}
-          <input type="date" [(ngModel)]="filter.date_from">
+          <input type="date" [(ngModel)]="filter.date_from" class="p-2">
         </div>
         <div *ngIf="filter.type=='specific'">
           {{ln.select_date || 'Select Date'}}
-          <input type="date" [(ngModel)]="filter.date">
-        </div>
-        <div class="ion-margin-top">
-          <ion-badge (click)="filter.type='range'" [color]="filter.type=='range' ? 'tertiary' : 'light'" class="fs-small">
-            <ion-label>{{ln.range || "Range"}}</ion-label>
-          </ion-badge>&nbsp;
-          <ion-badge (click)="filter.type='specific'" [color]="filter.type=='specific' ? 'tertiary' : 'light'">
-            <ion-label>{{ln.specific || "Specific"}}</ion-label>
-          </ion-badge>
+          <input type="date" [(ngModel)]="filter.date" class="p-2">
         </div>
       </ion-col>
-      <ion-col *ngIf="filter.type=='range'" size="6" size-sm="4" size-md="3">
+      <ion-col *ngIf="filter.type=='range'" size="6" size-sm="3" size-md="2">
         {{ln.to || 'To'}}
-        <input type="date" [(ngModel)]="filter.date_to">
+        <input type="date" [(ngModel)]="filter.date_to" class="p-2">
       </ion-col>
-      <ion-col size="12" size-sm="8" size-md="6">
-        <ion-toolbar>
-          <ion-button (click)="search()">
-            {{ln.search || 'Search'}}
-            <ion-icon slot="end" name="search-outline"></ion-icon>
-          </ion-button>
-        </ion-toolbar>
+      <ion-col size="12" size-sm="3" size-md="2">
+        <br>
+        <ion-button (click)="filter.type='range'" [color]="filter.type=='range' ? 'primary' : 'success'" size="small" fill="clear" class="fs-xsmall">
+          <ion-icon class="fs-small" name="checkmark-done-outline" *ngIf="filter.type=='range'" slot="start"></ion-icon>
+          {{ln.range || "Range"}}
+        </ion-button>
+        <ion-button (click)="filter.type='specific'" [color]="filter.type=='specific' ? 'primary' : 'success'" size="small" fill="clear" class="fs-xsmall">
+          <ion-icon class="fs-small" name="checkmark-done-outline" *ngIf="filter.type=='specific'" slot="start"></ion-icon>
+          {{ln.specific || "Specific"}}
+        </ion-button>
+      </ion-col>
+      <ion-col size="12" size-sm="3" size-md="2">
+        <ion-button (click)="search()" size="small" class="fs-small mt-15">
+          {{ln.search || 'Search'}}
+          <ion-icon slot="end" name="search-outline"></ion-icon>
+        </ion-button>
       </ion-col>
     </ion-row>
     <ion-row>

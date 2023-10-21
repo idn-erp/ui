@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { PmTaskCountComponent } from './pm-task-count.component';
+import { WorkShiftItemComponent } from './work-shift-item.component';
 
-describe('PmTaskCountComponent', () => {
-  let component: PmTaskCountComponent;
-  let fixture: ComponentFixture<PmTaskCountComponent>;
+describe('WorkShiftItemComponent', () => {
+  let component: WorkShiftItemComponent;
+  let fixture: ComponentFixture<WorkShiftItemComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PmTaskCountComponent ],
+      declarations: [ WorkShiftItemComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PmTaskCountComponent);
+    fixture = TestBed.createComponent(WorkShiftItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

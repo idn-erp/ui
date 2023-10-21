@@ -8,7 +8,6 @@ import { ProductivityPageRoutingModule } from './productivity-routing.module';
 
 import { ProductivityPage } from './productivity.page';
 import { BackButtonModule } from 'src/app/components/common/back-button/back-button.module';
-import { PmTaskCountModule } from 'src/app/components/productivity/pm/pm-task-count/pm-task-count.module';
 
 @NgModule({
   imports: [
@@ -18,7 +17,6 @@ import { PmTaskCountModule } from 'src/app/components/productivity/pm/pm-task-co
     ProductivityPageRoutingModule,
     BackButtonModule,
 
-    PmTaskCountModule
   ],
   declarations: [ProductivityPage]
 })

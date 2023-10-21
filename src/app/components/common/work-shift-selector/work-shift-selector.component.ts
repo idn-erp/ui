@@ -18,7 +18,9 @@ export class WorkShiftSelectorComponent  implements OnInit {
   ) { }
 
   ln: any = this.api.ln.data;
-  ngOnInit() {}
+  ngOnInit() {
+    this.load()
+  }
 
   all: shift[] = []
   selected: shift = {}

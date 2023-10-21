@@ -75,15 +75,7 @@ input:focus, select:focus {
     border-color: #007bff;
 }
 
-
-
-/** Custom CSS */
-.dn-full{width: 100%;}
-.dn-fs-small{font-size: small !important;}
-.dn-fs-xxsmall{font-size: xx-small !important;}
-.dn-fs-xsmall{font-size: x-small !important;}
-.dn-fs-smaller{font-size: smaller !important;}
-
+/* Custom table design */
 .dn-table{width:100%;text-align: start !important;border:1px #eee solid !important;}
 .dn-table thead tr{font-weight:bold;background-color: #f9f9f9;border-bottom: solid 2px teal;}
 .dn-table td{padding:10px 5px;}
@@ -91,28 +83,6 @@ input:focus, select:focus {
 .dn-table td span:last-child{font-size:small !important;line-height: 1em !important;}
 .dn-table td ion-badge{margin-inline-end: 4px !important;}
 .dn-table tbody tr{border-bottom: solid 1px #999 !important;}
-
-
-/* Background color utilities */
-.bg-primary { background-color: #007bff !important; }
-.bg-secondary { background-color: #6c757d !important; }
-.bg-success { background-color: #28a745 !important; }
-.bg-info { background-color: #17a2b8 !important; }
-.bg-warning { background-color: #ffc107 !important; }
-.bg-danger { background-color: #dc3545 !important; }
-.bg-light { background-color: #f8f9fa !important; }
-.bg-dark { background-color: #343a40 !important; }
-.bg-white { background-color: #fff !important; }
-
-/* Text color utilities */
-.text-primary { color: #007bff !important; }
-.text-secondary { color: #6c757d !important; }
-.text-success { color: #28a745 !important; }
-.text-info { color: #17a2b8 !important; }
-.text-warning { color: #ffc107 !important; }
-.text-danger { color: #dc3545 !important; }
-.text-light { color: #f8f9fa !important; }
-.text-dark { color: #343a40 !important; }
 
 /* font size utilities */
 .fs-xxsmall { font-size: xx-small !important; }
@@ -125,48 +95,134 @@ input:focus, select:focus {
 .fs-xlarge { font-size: x-large !important; }
 .fs-xxlarge { font-size: xx-large !important; }
 
-/* Border color utilities */
-.border-primary { border-color: #007bff !important; }
-.border-secondary { border-color: #6c757d !important; }
-.border-success { border-color: #28a745 !important; }
-.border-info { border-color: #17a2b8 !important; }
-.border-warning { border-color: #ffc107 !important; }
-.border-danger { border-color: #dc3545 !important; }
-.border-light { border-color: #f8f9fa !important; }
-.border-dark { border-color: #343a40 !important; }
-
-/* all side border utility classes */
-.br-top { border-top: 1px solid #dee2e6 !important; }
-.br-right { border-right: 1px solid #dee2e6 !important; }
-.br-bottom { border-bottom: 1px solid #dee2e6 !important; }
-.br-left { border-left: 1px solid #dee2e6 !important; }
+/* Border basic classes */
 .br { border: 1px solid #dee2e6 !important; }
 .br-rounded { border-radius: 0.25rem !important; }
 
-/* Margin & Padding helper classes */
+// Define sizes
 $sizes: 0, 1, 2, 3, 4, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50; 
 
-@each $s in $sizes {
-    
-    //margins
-    .m-#{$s} { margin: #{$s}px !important; }
-    .mt-#{$s} { margin-top: #{$s}px !important;}
-    .mr-#{$s} { margin-right: #{$s}px !important; }
-    .mb-#{$s} { margin-bottom: #{$s}px !important; }
-    .ml-#{$s} { margin-left: #{$s}px !important; }
-    .mx-#{$s} { margin-left: #{$s}px !important; margin-right: #{$s}px !important; }
-    .my-#{$s} { margin-top: #{$s}px !important; margin-bottom: #{$s}px !important; }
+// Define color variables
+$_primary: (
+    "key": "primary",
+    "value": #007bff
+);
+$_secondary: (
+    "key": "secondary",
+    "value": #6c757d
+);
+$_success: (
+    "key": "success",
+    "value": #28a745
+);
+$_info: (
+    "key": "info",
+    "value": #17a2b8
+);
+$_warning: (
+    "key": "warning",
+    "value": #ffc107
+);
+$_danger: (
+    "key": "danger",
+    "value": #dc3545
+);
+$_light: (
+    "key": "light",
+    "value": #f8f9fa
+);
+$_dark: (
+    "key": "dark",
+    "value": #343a40
+);
 
-    //margins
-    .p-#{$s} { padding: #{$s}px !important; }
-    .pt-#{$s} { padding-top: #{$s}px !important;}
-    .pr-#{$s} { padding-right: #{$s}px !important; }
-    .pb-#{$s} { padding-bottom: #{$s}px !important; }
-    .pl-#{$s} { padding-left: #{$s}px !important; }
-    .px-#{$s} { padding-left: #{$s}px !important; padding-right: #{$s}px !important; }
-    .py-#{$s} { padding-top: #{$s}px !important; padding-bottom: #{$s}px !important; }
-
+// Define Lighten and Darken Functions
+@function lighten($cl, $percentage) {
+    @return mix(white, $cl, $percentage);
 }
+@function darken($cl, $percentage) {
+    @return mix(black, $cl, $percentage);
+}
+
+@each $color in $_primary, $_secondary, $_success, $_info, $_warning, $_danger, $_light, $_dark {
+
+    // Create Classes for Background Colors
+    .bg-#{map-get($color, 'key')} {
+        background-color: map-get($color, 'value');
+    }
+
+    // Create Classes for Text Colors
+    .fs-#{map-get($color, 'key')} {
+        color: map-get($color, 'value');
+    }
+
+    // Create Classes for Border Colors
+    .br-#{map-get($color, 'key')} {
+        border: 1px solid map-get($color, 'value');
+    }
+    // Create Classes for Border Colors per side
+    .br-t-#{map-get($color, 'key')} {
+        border-top: 1px solid map-get($color, 'value');
+    }
+    .br-b-#{map-get($color, 'key')} {
+        border-top: 1px solid map-get($color, 'value');
+    }
+    .br-l-#{map-get($color, 'key')} {
+        border-top: 1px solid map-get($color, 'value');
+    }
+    .br-r-#{map-get($color, 'key')} {
+        border-top: 1px solid map-get($color, 'value');
+    }
+
+    @each $s in $sizes {
+        // Background Color Lighten and Darken Classes
+        .bg-#{map-get($color, 'key')}-lg-#{$s} {
+            background-color: lighten(map-get($color, 'value'), $s / 100);
+        }
+        
+        .bg-#{map-get($color, 'key')}-dr-#{$s} {
+            background-color: darken(map-get($color, 'value'), $s / 100);
+        }
+        
+        // Text Color Lighten and Darken Classes
+        .fc-#{map-get($color, 'key')}-lg-#{$s} {
+            color: lighten(map-get($color, 'value'), $s / 100);
+        }
+        
+        .fc-#{map-get($color, 'key')}-dr-#{$s} {
+            color: darken(map-get($color, 'value'), $s / 100);
+        }
+        
+        // Border Color Lighten and Darken Classes
+        .br-#{map-get($color, 'key')}-lg-#{$s} {
+            border: 1px solid lighten(map-get($color, 'value'), $s / 100);
+        }
+        
+        .br-#{map-get($color, 'key')}-dr-#{$s} {
+            border: 1px solid darken(map-get($color, 'value'), $s / 100);
+        }
+        
+        // Margins and Paddings Classes
+        .m-#{$s} { margin: #{$s}px !important; }
+        .mt-#{$s} { margin-top: #{$s}px !important;}
+        .mr-#{$s} { margin-right: #{$s}px !important; }
+        .mb-#{$s} { margin-bottom: #{$s}px !important; }
+        .ml-#{$s} { margin-left: #{$s}px !important; }
+        .mx-#{$s} { margin-left: #{$s}px !important; margin-right: #{$s}px !important; }
+        .my-#{$s} { margin-top: #{$s}px !important; margin-bottom: #{$s}px !important; }
+        
+        .p-#{$s} { padding: #{$s}px !important; }
+        .pt-#{$s} { padding-top: #{$s}px !important;}
+        .pr-#{$s} { padding-right: #{$s}px !important; }
+        .pb-#{$s} { padding-bottom: #{$s}px !important; }
+        .pl-#{$s} { padding-left: #{$s}px !important; }
+        .px-#{$s} { padding-left: #{$s}px !important; padding-right: #{$s}px !important; }
+        .py-#{$s} { padding-top: #{$s}px !important; padding-bottom: #{$s}px !important; }
+    }
+}
+
+
+
 
 
 body[dir="rtl"] ion-icon{
