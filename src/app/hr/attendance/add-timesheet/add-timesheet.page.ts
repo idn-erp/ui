@@ -129,7 +129,7 @@ export class AddTimesheetPage implements OnInit {
         out_time : x.out_time,
         is_out_early : x.is_out_early || "none",
         is_absent : x.is_absent || "none",
-        shift_id : x.shift.id
+        shift_id : x.shift.id as number
       }
     })
     await this.api.showLoader("Saving...")

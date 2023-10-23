@@ -41,8 +41,13 @@ const routes: Routes = [
         path: 'user-details',
         loadChildren: () => import('./user/user-details/user-details.module').then( m => m.UserDetailsPageModule)
       },
+      {
+        path: 'work-shift',
+        loadChildren: () => import('./work-shift/work-shift.module').then( m => m.WorkShiftPageModule)
+      },
     ]
   }
+
 ];
 
 @NgModule({

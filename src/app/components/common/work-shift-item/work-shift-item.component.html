@@ -1,2 +1,2 @@
-<span class="fb db fs-medium">{{ln[item.code] || item.name}}</span>
-<span class="fs-small">{{(item.in_time.h + ':' + item.in_time.m)}} {{ln.to || 'to'}} {{item.out_early}}</span>
+<span class="fb db fs-medium m-0">{{ln[item.code] || item.name}}</span>
+<span class="fs-small m-0">{{item.in_time | objectToTime}} {{ln.to || 'to'}} {{item.out_time | objectToTime}}</span>

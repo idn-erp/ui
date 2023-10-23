@@ -54,8 +54,24 @@ export class UserShiftComponent  implements OnInit {
     }
   }
 
-  remove(s: user_shift){
-
+  async remove(s: user_shift){
+    const a = await this.api.confirm(
+      this.ln.remove_shift || "Remove Shift?",
+      this.ln.do_you_want_to_remove_this_remove || "Do you want to remove this shift?",
+      "REMOVE",
+      "NO"
+    );
+    if(a){
+      await this.api.showLoader(this.ln.removing_shift || "Removing Shift");
+      const res = await this.usr.remove_shift( this.user_id, s.id as string )
+      this.api.hideLoader()
+      if( res.ok ){
+        this.api.Toast(this.ln.shift_removed || "Shift removed")
+        this.all = res.data;
+      }else{
+        this.api.Toast(this.ln.error_unable_remove_shift || "Error : Unable to remove Shift")
+      }
+    }
   }
 
 }

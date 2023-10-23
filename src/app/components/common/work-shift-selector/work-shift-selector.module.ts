@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { WorkShiftSelectorComponent } from './work-shift-selector.component';
 import { FormsModule } from '@angular/forms';
+import { WorkShiftItemModule } from '../work-shift-item/work-shift-item.module';
 
 
 
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     IonicModule,
-    FormsModule
+    FormsModule,
+    WorkShiftItemModule
   ],
   exports : [
     WorkShiftSelectorComponent

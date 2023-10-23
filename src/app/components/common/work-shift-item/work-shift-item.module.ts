@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WorkShiftItemComponent } from './work-shift-item.component';
 import { IonicModule } from '@ionic/angular';
+import { PipeUtilsModule } from 'src/app/pipes/pipe-utils/pipe-utils.module';
 
 
 
@@ -11,7 +12,8 @@ import { IonicModule } from '@ionic/angular';
   ],
   imports: [
     CommonModule,
-    IonicModule
+    IonicModule,
+    PipeUtilsModule
   ],
   exports : [
     WorkShiftItemComponent

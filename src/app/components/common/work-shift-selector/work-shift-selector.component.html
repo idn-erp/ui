@@ -10,7 +10,9 @@
   <ion-item *ngFor="let s of all" (click)="selected=s" [color]="selected.id==s.id ? 'secondary' : ''">
     <ion-icon name="ellipse-outline" *ngIf="selected.id!=s.id"></ion-icon> 
     <ion-icon name="checkmark-done-circle" *ngIf="selected.id==s.id"></ion-icon> 
-    <ion-label class="ion-margin-start">{{ln[s.code] || s.name}}</ion-label>
+    <ion-label class="ion-margin-start">
+      <app-work-shift-item [item]="s"></app-work-shift-item>
+    </ion-label>
   </ion-item>
 </ion-content>
 <ion-footer>

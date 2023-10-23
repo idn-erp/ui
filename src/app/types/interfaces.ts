@@ -222,7 +222,7 @@ export interface country {
 }
 
 export interface timesheet {
-	id?: number;
+	id?: number | string;
 	date?: string;
 	file?: string;
 	name?: string;
@@ -258,8 +258,8 @@ export interface timesheet_filter{
 }
   
 
-export interface shift {
-	id?: number
+export interface shift{
+	id?: number | string
 	code?: string
 	name?: string
 	info?: string | null
@@ -279,14 +279,8 @@ export interface shift {
 	is_active?: number
 }
 export interface user_shift extends shift{
-	id?: number
 	user_id?: number
 	shift_id?: number
-	code?: string
-	name?: string
-	start_date?: string
-	end_date?: string
-	created_by?: number
 	created_at?: string
 	is_primary?: boolean
 }
