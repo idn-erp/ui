@@ -23,6 +23,10 @@ const routes: Routes = [
         loadChildren: () => import('./educational-supervisors/educational-supervisors.module').then( m => m.EducationalSupervisorsPageModule)
       }
     ]
+  },
+  {
+    path: 'supervisory-methods',
+    loadChildren: () => import('./supervisory-methods/supervisory-methods.module').then( m => m.SupervisoryMethodsPageModule)
   }
 ];
 

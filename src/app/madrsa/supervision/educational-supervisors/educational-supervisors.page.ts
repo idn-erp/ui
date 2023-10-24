@@ -17,7 +17,7 @@ export class EducationalSupervisorsPage implements OnInit {
         "key": "supervisory_methods",
         "name": "Supervisory Methods",
         "icon": "options-outline",
-        "path": ["/supervision", "supervisory-methods"]
+        "path": ["/madrsa", "supervision", "supervisory-methods"]
     }
   ];
   ln: any = this.api.ln.data;
