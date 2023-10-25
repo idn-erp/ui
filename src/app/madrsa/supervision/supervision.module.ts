@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { SupervisionPageRoutingModule } from './supervision-routing.module';
 
 import { SupervisionPage } from './supervision.page';
+import { UserToolbarModule } from 'src/app/components/common/user-toolbar/user-toolbar.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SupervisionPageRoutingModule
+    SupervisionPageRoutingModule,
+    UserToolbarModule
   ],
   declarations: [SupervisionPage]
 })
