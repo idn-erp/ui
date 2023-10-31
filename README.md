@@ -31,7 +31,7 @@ git clone https://github.com/idn-erp/ui.git
 ```bash
 npm install
 ```
-5.  Configure the API endpoint: Update the API endpoint URL in the code to match your backend API's location.
+5.  Configure the API endpoint: Update the API endpoint URL in the environment.ts file to match your backend API's location.
 6.  Run the application:
 ```bash
 ionic serve
