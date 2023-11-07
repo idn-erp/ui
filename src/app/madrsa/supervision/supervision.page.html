@@ -1,0 +1,24 @@
+<ion-split-pane contentId="main">
+  <ion-menu contentId="main">
+    <ion-header>
+      <ion-toolbar color="dark">
+        <ion-title>Supervision</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content color="dark">
+      <ion-item color="dark" [routerLink]="m.path" *ngFor="let m of all">
+        <ion-icon [name]="m.icon"></ion-icon>
+        <ion-label class="ion-margin-start">
+          {{ln[m.key || '_'] || m.name}}
+        </ion-label>
+      </ion-item>
+    </ion-content>
+    <ion-footer>
+      <app-user-toolbar></app-user-toolbar>
+    </ion-footer>
+  </ion-menu>
+
+  <div class="ion-page" id="main">
+    <ion-router-outlet></ion-router-outlet>
+  </div>
+</ion-split-pane>
