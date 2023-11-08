@@ -37,6 +37,22 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then( m => m.AdminPageModule)
   },
+  {
+    path: 'madrsa/finance',
+    loadChildren: () => import('./madrsa/finance/finance.module').then( m => m.FinancePageModule)
+  },
+  {
+    path: 'madrsa/learning',
+    loadChildren: () => import('./madrsa/learning/learning.module').then( m => m.LearningPageModule)
+  },
+  {
+    path: 'madrsa/supervision',
+    loadChildren: () => import('./madrsa/supervision/supervision.module').then( m => m.SupervisionPageModule)
+  },  {
+    path: 'madrsa',
+    loadChildren: () => import('./madrsa/madrsa/madrsa.module').then( m => m.MadrsaPageModule)
+  }
+
 
 ];
 

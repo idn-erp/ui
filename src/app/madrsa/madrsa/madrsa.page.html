@@ -1,0 +1,88 @@
+<ion-split-pane contentId="main">
+  <ion-menu contentId="main" color="light">
+    <ion-header>
+      <ion-toolbar color="dark">
+        <ion-title>Madrsa</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-accordion-group [multiple]="true">
+        <ion-accordion value="first">
+          <ion-item lines="none" slot="header">
+            <ion-icon slot="start" name="book"></ion-icon>
+            <ion-label>Learning & Education</ion-label>
+          </ion-item>
+          <div slot="content" class="br-s-dark-10">
+            <ion-item lines="none">
+              <ion-icon slot="start" name="school"></ion-icon>
+              <ion-label>Head Teacher</ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-icon slot="start" name="briefcase"></ion-icon>
+              <ion-label>School Affair Agent</ion-label>
+            </ion-item>
+            <!-- Add icons to the rest of the items -->
+          </div>
+        </ion-accordion>
+        <ion-accordion value="second">
+          <ion-item lines="none" slot="header">
+            <ion-icon slot="start" name="clipboard"></ion-icon>
+            <ion-label>Educational Supervision</ion-label>
+          </ion-item>
+          <div slot="content" class="br-s-dark-10">
+            <ion-accordion value="second1">
+              <ion-item lines="none" slot="header">
+                <ion-icon slot="start" name="people"></ion-icon>
+                <ion-label>The Teachers</ion-label>
+              </ion-item>
+              <div slot="content" class="br-s-dark-10">
+                <ion-item lines="none">
+                  <ion-icon slot="start" name="person"></ion-icon>
+                  <ion-label>Teacher Data</ion-label>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-icon slot="start" name="list"></ion-icon>
+                  <ion-label>Methods for Teachers</ion-label>
+                </ion-item>
+              </div>
+            </ion-accordion>
+            <ion-accordion value="second2">
+              <ion-item lines="none" slot="header">
+                <ion-icon slot="start" name="people"></ion-icon>
+                <ion-label>Educational Supervisors</ion-label>
+              </ion-item>
+              <div slot="content" class="br-s-dark-10">
+                <ion-item lines="none">
+                  <ion-icon slot="start" name="hammer"></ion-icon>
+                  <ion-label>Supervisory Methods</ion-label>
+                </ion-item>
+              </div>
+            </ion-accordion>
+          </div>
+        </ion-accordion>
+        <ion-accordion value="third">
+          <ion-item lines="none" slot="header">
+            <ion-icon slot="start" name="cash"></ion-icon>
+            <ion-label>Financial</ion-label>
+          </ion-item>
+          <div slot="content" class="br-s-dark-10">
+            <ion-item lines="none">
+              <ion-icon slot="start" name="calculator"></ion-icon>
+              <ion-label>Financial Accountant</ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-icon slot="start" name="briefcase"></ion-icon>
+              <ion-label>Chartered Accountant</ion-label>
+            </ion-item>
+          </div>
+        </ion-accordion>
+      </ion-accordion-group>
+    </ion-content>    
+  </ion-menu>
+
+  <div class="ion-page" id="main">
+    <ion-content>
+      This is test
+    </ion-content>
+  </div>
+</ion-split-pane>

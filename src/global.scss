@@ -176,8 +176,23 @@ $_dark: (
     .br-r-#{map-get($color, 'key')} {
         border-top: 1px solid map-get($color, 'value');
     }
+    .br-s-#{map-get($color, 'key')}{
+        border-inline-start: 1px solid map-get($color, 'value');
+    }
+    .br-e-#{map-get($color, 'key')}{
+        border-inline-end: 1px solid map-get($color, 'value');
+    }
 
     @each $s in $sizes {
+
+        .br-#{map-get($color, 'key')}-#{$s}{
+            border: solid #{$s}px map-get($color, 'value');
+        }
+        
+        .br-s-#{map-get($color, 'key')}-#{$s}{
+            border-inline-start: solid #{$s}px map-get($color, 'value');
+        }
+
         // Background Color Lighten and Darken Classes
         .bg-#{map-get($color, 'key')}-lg-#{$s} {
             background-color: lighten(map-get($color, 'value'), $s / 100);
